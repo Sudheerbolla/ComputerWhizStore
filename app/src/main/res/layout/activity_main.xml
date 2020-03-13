@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <RelativeLayout
+            android:id="@+id/relTopBar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:padding="@dimen/ten_dp"
+                app:srcCompat="@drawable/ic_back" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toStartOf="@id/txtLogout"
+                android:layout_toEndOf="@id/imgBack"
+                android:gravity="center"
+                android:text="Heading"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/eighteen_sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/five_dp"
+                android:background="@drawable/red_round_bg_selector"
+                android:paddingStart="@dimen/twelve_dp"
+                android:paddingTop="@dimen/eight_dp"
+                android:paddingEnd="@dimen/twelve_dp"
+                android:paddingBottom="@dimen/eight_dp"
+                android:text="Logout"
+                android:textColor="@color/btn_text_color_red"
+                android:textSize="@dimen/fifteen_sp" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/one_dp"
+            android:layout_below="@id/relTopBar"
+            android:background="@color/color_vvvDarkGrey" />
+
+        <FrameLayout
+            android:id="@+id/mainFrame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/view" />
+
+    </RelativeLayout>
+
+</layout>

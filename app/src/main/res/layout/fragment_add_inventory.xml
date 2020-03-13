@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/twentyfive_dp"
+            android:paddingTop="@dimen/thirtyfive_dp"
+            android:paddingEnd="@dimen/twentyfive_dp">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/seven_dp"
+                android:background="@drawable/round_background"
+                android:hint="@string/product_name"
+                android:inputType="text"
+                android:paddingStart="@dimen/fifteen_dp"
+                android:paddingTop="@dimen/eight_dp"
+                android:paddingEnd="@dimen/fifteen_dp"
+                android:paddingBottom="@dimen/eight_dp"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorBlack" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/seven_dp"
+                android:background="@drawable/round_background"
+                android:gravity="start"
+                android:hint="@string/product_description"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:paddingStart="@dimen/fifteen_dp"
+                android:paddingTop="@dimen/eight_dp"
+                android:paddingEnd="@dimen/fifteen_dp"
+                android:paddingBottom="@dimen/eight_dp"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorBlack" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinnerCategories"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fourty_four_dp"
+                android:layout_margin="@dimen/seven_dp"
+                android:background="@drawable/round_background"
+                android:paddingStart="@dimen/fifteen_dp"
+                android:paddingTop="@dimen/eight_dp"
+                android:paddingEnd="@dimen/fifteen_dp"
+                android:paddingBottom="@dimen/eight_dp"
+                android:prompt="@string/filter" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinnerSubCategories"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fourty_four_dp"
+                android:layout_margin="@dimen/seven_dp"
+                android:background="@drawable/round_background"
+                android:paddingStart="@dimen/fifteen_dp"
+                android:paddingTop="@dimen/eight_dp"
+                android:paddingEnd="@dimen/fifteen_dp"
+                android:paddingBottom="@dimen/eight_dp"
+                android:prompt="@string/filter" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtBrand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/seven_dp"
+                android:background="@drawable/round_background"
+                android:hint="@string/brand"
+                android:inputType="text"
+                android:paddingStart="@dimen/fifteen_dp"
+                android:paddingTop="@dimen/eight_dp"
+                android:paddingEnd="@dimen/fifteen_dp"
+                android:paddingBottom="@dimen/eight_dp"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorBlack" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/seven_dp"
+                android:background="@drawable/round_background"
+                android:hint="@string/price_in_cad"
+                android:inputType="numberDecimal"
+                android:paddingStart="@dimen/fifteen_dp"
+                android:paddingTop="@dimen/eight_dp"
+                android:paddingEnd="@dimen/fifteen_dp"
+                android:paddingBottom="@dimen/eight_dp"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorBlack" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/seven_dp"
+                android:background="@drawable/round_background"
+                android:hint="@string/quantity"
+                android:inputType="number"
+                android:paddingStart="@dimen/fifteen_dp"
+                android:paddingTop="@dimen/eight_dp"
+                android:paddingEnd="@dimen/fifteen_dp"
+                android:paddingBottom="@dimen/eight_dp"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorBlack" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtAddInventory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/ten_dp"
+                android:background="@drawable/red_round_bg_selector"
+                android:gravity="center"
+                android:padding="@dimen/ten_dp"
+                android:text="@string/add_modify_inventory"
+                android:textColor="@color/btn_text_color_red"
+                android:textSize="@dimen/seventeen_sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

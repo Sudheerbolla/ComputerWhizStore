@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/ten_dp"
+        tools:context=".MainActivity">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtInvoiceName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="@dimen/seven_dp"
+            android:text="Invoice 001"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtInvoiceName"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/txtSubCategory"
+            android:gravity="center_vertical"
+            android:padding="@dimen/five_dp"
+            android:text="Electronics"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtSubCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtInvoiceName"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical"
+            android:padding="@dimen/five_dp"
+            android:text="Mobiles"
+            android:textColor="@color/colorBlack"
+            android:textSize="17sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtQuanity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtSubCategory"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/txtPrice"
+            android:gravity="center_vertical"
+            android:padding="@dimen/five_dp"
+            android:text="qty: 2"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtSubCategory"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical"
+            android:padding="@dimen/five_dp"
+            android:text="$1500.0"
+            android:textColor="@color/colorRed"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+</layout>
