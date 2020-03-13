@@ -44,7 +44,7 @@ class AddCustomerFragment : BaseFragment(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments.apply {
-            if (this?.containsKey("customerObject")!!) {
+            if (this != null && this.containsKey("customerObject")) {
                 customersModel = getParcelable("customerObject")
             }
         }

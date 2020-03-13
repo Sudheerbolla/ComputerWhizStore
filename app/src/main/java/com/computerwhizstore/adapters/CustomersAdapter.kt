@@ -37,8 +37,10 @@ class CustomersAdapter(
     class ViewHolder(var binding: ItemCustomersBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(categoriesModel: CustomersModel, iClickListener: IClickListener?) {
-//            binding.txtName.text =
-//                "${categoriesModel.firstName} ${categoriesModel.middleName} ${categoriesModel.lastName} "
+            binding.txtName.text =
+                "${categoriesModel.firstName} ${categoriesModel.middleName} ${categoriesModel.lastName} "
+            binding.txtEmailAddress.text = "${categoriesModel.emailAddress}"
+            binding.txtPhoneNumber.text = "${categoriesModel.phoneNumber}"
             binding.root.setOnClickListener { v ->
                 if (iClickListener != null) iClickListener.onClick(v, adapterPosition)
             }

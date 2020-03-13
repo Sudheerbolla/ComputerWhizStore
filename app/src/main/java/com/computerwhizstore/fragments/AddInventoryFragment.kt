@@ -52,12 +52,41 @@ class AddInventoryFragment : BaseFragment(), View.OnClickListener,
     private fun initComponents() {
         fragmentAddInventoryBinding.txtAddInventory.setOnClickListener(this)
         setUpCategories()
+        setUpData()
+    }
+
+    private fun setUpData() {
+        if (inventoryModel != null) {
+            fragmentAddInventoryBinding.edtBrand.setText(inventoryModel?.brand)
+            fragmentAddInventoryBinding.edtDescription.setText(inventoryModel?.productDescription)
+            fragmentAddInventoryBinding.edtName.setText(inventoryModel?.productName)
+            fragmentAddInventoryBinding.edtPrice.setText("${inventoryModel?.unitPrice}")
+            fragmentAddInventoryBinding.edtQuantity.setText("${inventoryModel?.quantity}")
+            setCategoryAndSubCategory()
+        }
+    }
+
+    fun setCategoryAndSubCategory() {
+        val cat = StaticUtils.getCategories();
+        for (i in cat) {
+            if (i.categoryId == inventoryModel?.categoryId!!) {
+//                fragmentAddInventoryBinding.spinnerCategories.setSelectedItem(i)
+                break
+            }
+        }
+        val subcat = StaticUtils.getSubCategories(inventoryModel?.categoryId!!)
+        for (i in subcat) {
+            if (i.subCategoryId == inventoryModel?.subCategoryId!!) {
+//                fragmentAddInventoryBinding.spinnerSubCategories.setSelectedItem(i)
+                break
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments.apply {
-            if (this?.containsKey("inventoryObject")!!) {
+            if (this != null && this.containsKey("inventoryObject")) {
                 inventoryModel = getParcelable("inventoryObject")
             }
         }

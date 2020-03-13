@@ -135,9 +135,7 @@ class ListFragment : BaseFragment(), IClickListener, View.OnClickListener,
                     }
                 })
                 customersModelListArrayList = ArrayList()
-                for (i in 0..10) {
-                    customersModelListArrayList?.add(CustomersModel())
-                }
+                customersModelListArrayList?.addAll(DbHelper(mainActivity).getCustomersList)
                 setCustomersAdapter()
             }
             Constants.SCREEN_INVENTORY -> {
@@ -328,13 +326,26 @@ class ListFragment : BaseFragment(), IClickListener, View.OnClickListener,
     }
 
     override fun onClick(view: View, position: Int) {
-        val selectedModel = salesReportsModelListArrayList?.get(position)
+//        val selectedModel = salesReportsModelListArrayList?.get(position)
 //        mainActivity.replaceFragment(QuestionsListFragment(), true)
 //        val intent = Intent(mainActivity, QuestionsActivity::class.java)
 //        intent.putExtra("categoryId", selectedModel?.id)
 //        intent.putExtra("anganwadiId", isFrom)
 //        startActivity(intent)
         mainActivity.overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left)
+        when (isFrom) {
+            Constants.SCREEN_INVENTORY -> {
+                val selectedModel = inventoryModelListArrayList?.get(position)
+                mainActivity.replaceFragment(
+                    AddInventoryFragment.newInstance(selectedModel!!),
+                    true
+                )
+            }
+            Constants.SCREEN_CUSTOMERS -> {
+                val selectedModel = customersModelListArrayList?.get(position)
+                mainActivity.replaceFragment(AddCustomerFragment.newInstance(selectedModel!!), true)
+            }
+        }
     }
 
     override fun onLongClick(view: View, position: Int) {
@@ -347,6 +358,9 @@ class ListFragment : BaseFragment(), IClickListener, View.OnClickListener,
                 when (isFrom) {
                     Constants.SCREEN_INVENTORY -> {
                         mainActivity.replaceFragment(AddInventoryFragment(), true)
+                    }
+                    Constants.SCREEN_CUSTOMERS -> {
+                        mainActivity.replaceFragment(AddCustomerFragment(), true)
                     }
                 }
             }

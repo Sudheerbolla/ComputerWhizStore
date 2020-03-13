@@ -32,5 +32,8 @@ class CategoryModel() : Parcelable {
         }
     }
 
+    override fun equals(other: Any?): Boolean {
+        return (other as CategoryModel).categoryId == categoryId
+    }
 
 }

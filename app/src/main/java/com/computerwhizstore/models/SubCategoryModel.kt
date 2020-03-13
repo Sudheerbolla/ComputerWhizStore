@@ -35,4 +35,9 @@ class SubCategoryModel() : Parcelable {
         }
     }
 
+    override fun equals(other: Any?): Boolean {
+//        return super.equals(other)
+        return (other as SubCategoryModel).subCategoryId == subCategoryId
+    }
+
 }

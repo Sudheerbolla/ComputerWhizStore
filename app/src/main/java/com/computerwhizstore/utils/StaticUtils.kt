@@ -159,7 +159,7 @@ class StaticUtils {
             return categoriesList!!
         }
 
-        fun getSubCategories(): ArrayList<SubCategoryModel> {
+        fun getAllSubCategories(): ArrayList<SubCategoryModel> {
             if (subCategoriesList.isNullOrEmpty()) {
                 subCategoriesList = ArrayList()
 
@@ -260,7 +260,7 @@ class StaticUtils {
         fun getSubCategories(categoryId: Int): ArrayList<SubCategoryModel> {
             val subCategoriesForCategory = ArrayList<SubCategoryModel>()
             if (subCategoriesList.isNullOrEmpty()) {
-                subCategoriesList = getSubCategories()
+                subCategoriesList = getAllSubCategories()
             }
             for (i in subCategoriesList!!) {
                 if (i.categoryId == categoryId)
