@@ -23,6 +23,17 @@ import java.util.*
 class AddInventoryFragment : BaseFragment(), View.OnClickListener,
     AdapterView.OnItemSelectedListener {
 
+    companion object {
+        fun newInstance(inventoryModel: InventoryModel): AddInventoryFragment {
+            val addInventoryFragment = AddInventoryFragment()
+            val bundle = Bundle()
+            bundle.putParcelable("inventoryObject", inventoryModel)
+            addInventoryFragment.arguments = bundle
+            return addInventoryFragment
+        }
+    }
+
+    private var inventoryModel: InventoryModel? = null
     private var categoryId: Int? = null
     private var subCategoryId: Int? = null
     private lateinit var categories: ArrayList<CategoryModel>
@@ -41,6 +52,15 @@ class AddInventoryFragment : BaseFragment(), View.OnClickListener,
     private fun initComponents() {
         fragmentAddInventoryBinding.txtAddInventory.setOnClickListener(this)
         setUpCategories()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments.apply {
+            if (this?.containsKey("inventoryObject")!!) {
+                inventoryModel = getParcelable("inventoryObject")
+            }
+        }
     }
 
     private fun setUpCategories() {

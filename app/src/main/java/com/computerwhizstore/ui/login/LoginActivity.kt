@@ -17,9 +17,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.computerwhizstore.MainActivity
 import com.computerwhizstore.R
+import com.computerwhizstore.models.UserModel
 import com.computerwhizstore.utils.AppLocalStorage
+import com.computerwhizstore.utils.StaticUtils
 
 class LoginActivity : AppCompatActivity() {
+    companion object {
+        lateinit var userModel: UserModel
+    }
 
     private lateinit var loginViewModel: LoginViewModel
 
@@ -59,16 +64,20 @@ class LoginActivity : AppCompatActivity() {
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
             }
+            userModel = StaticUtils.getUserModel(username.text.toString().trim())!!
             setResult(Activity.RESULT_OK)
             AppLocalStorage.getInstance(this).setString(
                 AppLocalStorage.PREF_USER_ID,
-                username.text.toString().trim()
+                userModel.userId!!
             )
             AppLocalStorage.getInstance(this).setString(
                 AppLocalStorage.PREF_PASSWORD,
-                password.text.toString().trim()
+                userModel.password!!
             )
-            //Complete and destroy login activity once successful
+            AppLocalStorage.getInstance(this).setInt(
+                AppLocalStorage.PREF_USER_TYPE,
+                userModel.userType!!
+            )
             finish()
         })
 

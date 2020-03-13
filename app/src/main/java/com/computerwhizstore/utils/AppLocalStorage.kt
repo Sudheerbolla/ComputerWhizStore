@@ -65,6 +65,7 @@ class AppLocalStorage private constructor(mContext: Context) {
         val PREF_USER_ID = "email_id"
         val PREF_IS_FIRST_TIME_LAUNCH = "is_first_time_launch"
         val PREF_PASSWORD = "password"
+        val PREF_USER_TYPE = "user_type"
 
         private var instance: AppLocalStorage? = null
 

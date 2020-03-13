@@ -7,16 +7,24 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.computerwhizstore.databinding.ActivityMainBinding
 import com.computerwhizstore.fragments.DashboardFragment
+import com.computerwhizstore.models.UserModel
 import com.computerwhizstore.utils.AppLocalStorage
 import com.computerwhizstore.utils.PopUtils
+import com.computerwhizstore.utils.StaticUtils
 
 class MainActivity : BaseActivity(), View.OnClickListener {
+    companion object {
+        lateinit var userModel: UserModel
+    }
 
     private lateinit var activityMainBinding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        userModel = StaticUtils.getUserModel(
+            AppLocalStorage.getInstance(this).getString(AppLocalStorage.PREF_USER_ID, "")!!
+        )!!
         replaceFragment(DashboardFragment(), false)
         setListeners()
     }

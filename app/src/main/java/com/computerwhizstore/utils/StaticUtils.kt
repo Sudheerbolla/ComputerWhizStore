@@ -29,6 +29,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.computerwhizstore.R
 import com.computerwhizstore.models.CategoryModel
 import com.computerwhizstore.models.SubCategoryModel
+import com.computerwhizstore.models.UserModel
 import com.google.android.material.snackbar.Snackbar
 import java.io.*
 import java.net.HttpURLConnection
@@ -49,7 +50,81 @@ class StaticUtils {
         val displayTimeFormat = "hh:mm a"
         var serverTimeSimpleDateFormat = SimpleDateFormat(serverTimeFormat, Locale.US)
         var categoriesList: ArrayList<CategoryModel>? = null
+        var usersList: ArrayList<UserModel>? = null
         var subCategoriesList: ArrayList<SubCategoryModel>? = null
+
+        fun getStoreUsersList(): ArrayList<UserModel> {
+            if (usersList == null || usersList!!.isEmpty()) {
+                usersList = ArrayList()
+                var userModel = UserModel()
+                userModel.userName = "Admin"
+                userModel.password = "111111"
+                userModel.userId = "admin"
+                userModel.phoneNumber = "123456789"
+                userModel.userType = 0
+                userModel.userStatus = 1
+                usersList?.add(userModel)
+
+                userModel = UserModel()
+                userModel.userName = "Alex"
+                userModel.password = "111111"
+                userModel.userId = "user1"
+                userModel.phoneNumber = "1111111111"
+                userModel.userType = 1
+                userModel.userStatus = 1
+                usersList?.add(userModel)
+
+                userModel = UserModel()
+                userModel.userName = "Wade"
+                userModel.password = "111111"
+                userModel.userId = "user2"
+                userModel.phoneNumber = "2222222222"
+                userModel.userType = 1
+                userModel.userStatus = 1
+                usersList?.add(userModel)
+
+                userModel = UserModel()
+                userModel.userName = "Danilo"
+                userModel.password = "111111"
+                userModel.userId = "user3"
+                userModel.phoneNumber = "3333333333"
+                userModel.userType = 1
+                userModel.userStatus = 1
+                usersList?.add(userModel)
+
+                userModel = UserModel()
+                userModel.userName = "Guranchal"
+                userModel.password = "111111"
+                userModel.userId = "user4"
+                userModel.phoneNumber = "4444444444"
+                userModel.userType = 1
+                userModel.userStatus = 1
+                usersList?.add(userModel)
+
+                userModel = UserModel()
+                userModel.userName = "Sudheer"
+                userModel.password = "111111"
+                userModel.userId = "user5"
+                userModel.phoneNumber = "555555555"
+                userModel.userType = 1
+                userModel.userStatus = 1
+
+                usersList?.add(userModel)
+            }
+            return usersList!!
+        }
+
+        fun getUserModel(userId: String): UserModel? {
+            if (usersList == null || usersList!!.isEmpty()) {
+                getStoreUsersList();
+            }
+            for (i in usersList!!) {
+                if (i.userId == userId) {
+                    return i;
+                }
+            }
+            return null
+        }
 
         fun getCategories(): ArrayList<CategoryModel> {
             if (categoriesList.isNullOrEmpty()) {
