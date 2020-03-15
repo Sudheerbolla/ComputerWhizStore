@@ -33,6 +33,8 @@ class AddInventoryFragment : BaseFragment(), View.OnClickListener,
         }
     }
 
+    private var catPos: Int? = null
+    private var subCatPos: Int? = null
     private var inventoryModel: InventoryModel? = null
     private var categoryId: Int? = null
     private var subCategoryId: Int? = null
@@ -51,8 +53,8 @@ class AddInventoryFragment : BaseFragment(), View.OnClickListener,
 
     private fun initComponents() {
         fragmentAddInventoryBinding.txtAddInventory.setOnClickListener(this)
-        setUpCategories()
         setUpData()
+        setUpCategories()
     }
 
     private fun setUpData() {
@@ -68,16 +70,18 @@ class AddInventoryFragment : BaseFragment(), View.OnClickListener,
 
     fun setCategoryAndSubCategory() {
         val cat = StaticUtils.getCategories();
-        for (i in cat) {
-            if (i.categoryId == inventoryModel?.categoryId!!) {
-//                fragmentAddInventoryBinding.spinnerCategories.setSelectedItem(i)
+        for (i in 0..cat.size) {
+            if (cat.get(i).categoryId == inventoryModel?.categoryId!!) {
+                categoryId = cat.get(i).categoryId
+                catPos = i
                 break
             }
         }
         val subcat = StaticUtils.getSubCategories(inventoryModel?.categoryId!!)
-        for (i in subcat) {
-            if (i.subCategoryId == inventoryModel?.subCategoryId!!) {
-//                fragmentAddInventoryBinding.spinnerSubCategories.setSelectedItem(i)
+        for (i in 0..subcat.size) {
+            if (subcat.get(i).subCategoryId == inventoryModel?.subCategoryId!!) {
+                subCategoryId = subcat.get(i).subCategoryId
+                subCatPos = i
                 break
             }
         }
@@ -119,8 +123,10 @@ class AddInventoryFragment : BaseFragment(), View.OnClickListener,
                     categoryId = categories.get(position).categoryId!!
                     setUpSubCategories(categoryId!!)
                 }
-
             }
+        if (catPos != null) {
+            fragmentAddInventoryBinding.spinnerCategories.setSelection(catPos!!)
+        }
     }
 
     private fun setUpSubCategories(catId: Int) {
@@ -148,8 +154,10 @@ class AddInventoryFragment : BaseFragment(), View.OnClickListener,
                 ) {
                     subCategoryId = subCategories.get(position).subCategoryId!!
                 }
-
             }
+        if (subCatPos != null) {
+            fragmentAddInventoryBinding.spinnerSubCategories.setSelection(subCatPos!!)
+        }
     }
 
     override fun onAttach(context: Context) {
@@ -174,16 +182,17 @@ class AddInventoryFragment : BaseFragment(), View.OnClickListener,
     }
 
     private fun addInventoryRecordToDB() {
-        val inventoryModel = InventoryModel()
-        inventoryModel.productName = fragmentAddInventoryBinding.edtName.text.toString()
-        inventoryModel.productDescription =
+        if (inventoryModel == null || inventoryModel?.inventoryId == null)
+            inventoryModel = InventoryModel()
+        inventoryModel?.productName = fragmentAddInventoryBinding.edtName.text.toString()
+        inventoryModel?.productDescription =
             fragmentAddInventoryBinding.edtDescription.text.toString()
-        inventoryModel.unitPrice = fragmentAddInventoryBinding.edtPrice.text.toString().toDouble()
-        inventoryModel.quantity = fragmentAddInventoryBinding.edtQuantity.text.toString().toInt()
-        inventoryModel.brand = fragmentAddInventoryBinding.edtBrand.text.toString()
-        inventoryModel.categoryId = categoryId
-        inventoryModel.subCategoryId = subCategoryId
-        DbHelper(mainActivity).addInventory(inventoryModel)
+        inventoryModel?.unitPrice = fragmentAddInventoryBinding.edtPrice.text.toString().toDouble()
+        inventoryModel?.quantity = fragmentAddInventoryBinding.edtQuantity.text.toString().toInt()
+        inventoryModel?.brand = fragmentAddInventoryBinding.edtBrand.text.toString()
+        inventoryModel?.categoryId = categoryId
+        inventoryModel?.subCategoryId = subCategoryId
+        DbHelper(mainActivity).addInventory(inventoryModel!!)
         StaticUtils.showSimpleToast(mainActivity, "Record Added Successfully")
         mainActivity.popBackStack()
     }

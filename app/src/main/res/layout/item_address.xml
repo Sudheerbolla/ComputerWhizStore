@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_background"
+        android:padding="@dimen/ten_dp"
+        tools:context=".MainActivity">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtLine1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="@dimen/three_dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/sixteen_sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtLine2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtLine1"
+            android:gravity="center_vertical"
+            android:padding="@dimen/three_dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/sixteen_sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtRestOfAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtLine2"
+            android:padding="@dimen/three_dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/fifteen_sp" />
+
+    </RelativeLayout>
+
+</layout>

@@ -11,6 +11,7 @@ class InventoryModel() : Parcelable {
     var categoryId: Int? = null
     var subCategoryId: Int? = null
     var inventoryId: Int? = null
+    var paymentStatus: Int? = null
     var productDescription: String? = null
     var unitPrice: Double? = null
 
@@ -21,6 +22,7 @@ class InventoryModel() : Parcelable {
         categoryId = parcel.readValue(Int::class.java.classLoader) as? Int
         subCategoryId = parcel.readValue(Int::class.java.classLoader) as? Int
         inventoryId = parcel.readInt()
+        paymentStatus = parcel.readInt()
         productDescription = parcel.readString()
         unitPrice = parcel.readValue(Double::class.java.classLoader) as? Double
     }
@@ -29,6 +31,7 @@ class InventoryModel() : Parcelable {
         parcel.writeString(productName)
         parcel.writeString(brand)
         parcel.writeValue(quantity)
+        parcel.writeValue(paymentStatus)
         parcel.writeValue(categoryId)
         parcel.writeValue(subCategoryId)
         parcel.writeValue(inventoryId)

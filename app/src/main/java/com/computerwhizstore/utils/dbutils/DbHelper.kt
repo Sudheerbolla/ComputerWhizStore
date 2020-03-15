@@ -23,9 +23,6 @@ class DbHelper(context: Context) {
     fun addSalesReport(salesReportsModel: SalesReportsModel): Long {
         databaseHandler.getWritableDatabase()
         val values = ContentValues()
-        if (salesReportsModel.salesId != null) {
-            values.put(TableSales.salesId, salesReportsModel.salesId)
-        }
         values.put(TableSales.name, salesReportsModel.name)
         values.put(TableSales.subTotal, salesReportsModel.subTotal)
         values.put(TableSales.tax1, salesReportsModel.tax1)
@@ -39,7 +36,14 @@ class DbHelper(context: Context) {
         values.put(TableSales.customerId, salesReportsModel.customerId)
         values.put(TableSales.addressId, salesReportsModel.addressId)
         try {
-            return databaseHandler.insertData(TableSales.TABLE_NAME, values)
+            if (salesReportsModel.salesId != null) {
+                values.put(TableSales.salesId, salesReportsModel.salesId)
+                return databaseHandler.updateData(
+                    TableSales.TABLE_NAME, values, TableSales.salesId + "=?",
+                    arrayOf(salesReportsModel.salesId.toString())
+                ).toLong()
+            } else
+                return databaseHandler.insertData(TableSales.TABLE_NAME, values)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -50,9 +54,6 @@ class DbHelper(context: Context) {
     fun addInventory(inventoryModel: InventoryModel): Long {
         databaseHandler.getWritableDatabase()
         val values = ContentValues()
-        if (inventoryModel.inventoryId != null) {
-            values.put(TableInventory.inventoryId, inventoryModel.inventoryId)
-        }
         values.put(TableInventory.brand, inventoryModel.brand)
         values.put(TableInventory.categoryId, inventoryModel.categoryId)
         values.put(TableInventory.description, inventoryModel.productDescription)
@@ -62,7 +63,14 @@ class DbHelper(context: Context) {
         values.put(TableInventory.quantity, inventoryModel.quantity)
         values.put(TableInventory.subCategoryId, inventoryModel.subCategoryId)
         try {
-            return databaseHandler.insertData(TableInventory.TABLE_NAME, values)
+            if (inventoryModel.inventoryId != null) {
+                values.put(TableInventory.inventoryId, inventoryModel.inventoryId)
+                return databaseHandler.updateData(
+                    TableInventory.TABLE_NAME, values, TableInventory.inventoryId + "=?",
+                    arrayOf(inventoryModel.inventoryId.toString())
+                ).toLong()
+            } else
+                return databaseHandler.insertData(TableInventory.TABLE_NAME, values)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -73,16 +81,20 @@ class DbHelper(context: Context) {
     fun addCustomer(customersModel: CustomersModel): Long {
         databaseHandler.getWritableDatabase()
         val values = ContentValues()
-        if (customersModel.customerId != null) {
-            values.put(TableCustomers.customerId, customersModel.customerId)
-        }
         values.put(TableCustomers.firstName, customersModel.firstName)
         values.put(TableCustomers.lastName, customersModel.lastName)
         values.put(TableCustomers.middleName, customersModel.middleName)
         values.put(TableCustomers.emailAddress, customersModel.emailAddress)
         values.put(TableCustomers.phoneNumber, customersModel.phoneNumber)
         try {
-            return databaseHandler.insertData(TableCustomers.TABLE_NAME, values)
+            if (customersModel.customerId != null) {
+                values.put(TableCustomers.customerId, customersModel.customerId)
+                return databaseHandler.updateData(
+                    TableCustomers.TABLE_NAME, values, TableCustomers.customerId + "=?",
+                    arrayOf(customersModel.customerId.toString())
+                ).toLong()
+            } else
+                return databaseHandler.insertData(TableCustomers.TABLE_NAME, values)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -93,9 +105,6 @@ class DbHelper(context: Context) {
     fun addAddress(addressesModel: AddressesModel): Long {
         databaseHandler.getWritableDatabase()
         val values = ContentValues()
-        if (addressesModel.addressId != null) {
-            values.put(TableAddress.addressId, addressesModel.addressId)
-        }
         values.put(TableAddress.line1, addressesModel.line1)
         values.put(TableAddress.line2, addressesModel.line2)
         values.put(TableAddress.city, addressesModel.city)
@@ -103,7 +112,14 @@ class DbHelper(context: Context) {
         values.put(TableAddress.province, addressesModel.province)
         values.put(TableAddress.zipcode, addressesModel.zipcode)
         try {
-            return databaseHandler.insertData(TableAddress.TABLE_NAME, values)
+            if (addressesModel.addressId != null) {
+                values.put(TableAddress.addressId, addressesModel.addressId)
+                return databaseHandler.updateData(
+                    TableAddress.TABLE_NAME, values, TableAddress.addressId + "=?",
+                    arrayOf(addressesModel.addressId.toString())
+                ).toLong()
+            } else
+                return databaseHandler.insertData(TableAddress.TABLE_NAME, values)
         } catch (e: Exception) {
             e.printStackTrace()
         }

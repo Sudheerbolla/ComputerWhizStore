@@ -8,14 +8,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.computerwhizstore.MainActivity
 import com.computerwhizstore.R
+import com.computerwhizstore.adapters.AddressAdapter
 import com.computerwhizstore.databinding.FragmentAddCustomerBinding
+import com.computerwhizstore.interfaces.IClickListener
+import com.computerwhizstore.models.AddressesModel
 import com.computerwhizstore.models.CustomersModel
 import com.computerwhizstore.utils.StaticUtils
 import com.computerwhizstore.utils.dbutils.DbHelper
 
-class AddCustomerFragment : BaseFragment(), View.OnClickListener {
+class AddCustomerFragment : BaseFragment(), View.OnClickListener, IClickListener {
 
     companion object {
         fun newInstance(customersModel: CustomersModel): AddCustomerFragment {
@@ -29,6 +33,7 @@ class AddCustomerFragment : BaseFragment(), View.OnClickListener {
 
     private var customersModel: CustomersModel? = null
     private lateinit var mainActivity: MainActivity
+    private lateinit var addressArrayList: ArrayList<AddressesModel>
     private lateinit var fragmentAddCustomersBinding: FragmentAddCustomerBinding
 
     override fun onCreateView(
@@ -52,6 +57,15 @@ class AddCustomerFragment : BaseFragment(), View.OnClickListener {
 
     private fun initComponents() {
         fragmentAddCustomersBinding.txtAddCustomer.setOnClickListener(this)
+        if (customersModel == null) {
+            fragmentAddCustomersBinding.linAddress.visibility = View.GONE
+        } else {
+            fragmentAddCustomersBinding.linAddress.visibility = View.VISIBLE
+            addressArrayList = ArrayList()
+            setAddressAdapter()
+            addressArrayList.addAll(DbHelper(mainActivity).getAddressList)
+            fragmentAddCustomersBinding.txtAddAddress.setOnClickListener(this)
+        }
         if (customersModel != null) {
             fragmentAddCustomersBinding.edtPhone.setText(customersModel?.phoneNumber)
             fragmentAddCustomersBinding.edtEmailAddress.setText(customersModel?.emailAddress)
@@ -59,6 +73,14 @@ class AddCustomerFragment : BaseFragment(), View.OnClickListener {
             fragmentAddCustomersBinding.edtLastName.setText(customersModel?.lastName)
             fragmentAddCustomersBinding.edtMiddleName.setText(customersModel?.middleName)
         }
+    }
+
+    private fun setAddressAdapter() {
+        fragmentAddCustomersBinding.recyclerViewAddress.layoutManager =
+            LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
+        fragmentAddCustomersBinding.recyclerViewAddress.adapter =
+            AddressAdapter(addressArrayList, this)
+
     }
 
     override fun onAttach(context: Context) {
@@ -78,6 +100,13 @@ class AddCustomerFragment : BaseFragment(), View.OnClickListener {
                 if (TextUtils.isEmpty(message)) {
                     addCustomerRecordToDB()
                 } else StaticUtils.showSimpleToast(mainActivity, message)
+            }
+            R.id.txtAddAddress -> {
+                mainActivity.replaceFragment(
+                    AddAddressFragment.newInstance(
+                        customersModel?.customerId!!, null
+                    )
+                )
             }
         }
     }
@@ -119,4 +148,17 @@ class AddCustomerFragment : BaseFragment(), View.OnClickListener {
         }
         return ""
     }
+
+    override fun onClick(view: View, position: Int) {
+        mainActivity.replaceFragment(
+            AddAddressFragment.newInstance(
+                customersModel?.customerId!!, addressArrayList.get(position)
+            )
+        )
+    }
+
+    override fun onLongClick(view: View, position: Int) {
+
+    }
+
 }
