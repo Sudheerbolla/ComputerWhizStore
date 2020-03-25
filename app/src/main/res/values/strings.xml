@@ -31,5 +31,18 @@
     <string name="add_modify_address">Add/Modify Address</string>
     <string name="add_address">Add Address</string>
     <string name="zipcode">Zipcode</string>
+    <string name="create_order">Create Order</string>
+    <string name="proceed">Proceed</string>
+    <string name="total_qty">Total Qty:</string>
+    <string name="total_price">Total Price:</string>
+    <string name="customer_details">Customer Details</string>
+    <string name="address">Address</string>
+    <string name="select_customer">Select Customer</string>
+    <string name="select_customer_and_address">Select Customer and Address</string>
+    <string name="order_details">Order Details</string>
+    <string name="select_address">Select Address</string>
+    <string name="total_tax">Total Tax</string>
+    <string name="total_discount">Total Discount</string>
+    <string name="sub_total">Sub Total:</string>
 
 </resources>

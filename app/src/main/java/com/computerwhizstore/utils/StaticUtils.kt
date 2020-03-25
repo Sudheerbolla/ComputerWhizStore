@@ -681,6 +681,11 @@ class StaticUtils {
             context.startActivity(mapIntent)
         }
 
+        fun Int?.isGreaterThan(other: Int?) =
+            this != null && other != null && this > other
+
+        fun Int?.isLessThan(other: Int?) =
+            this != null && other != null && this < other
     }
 
 }

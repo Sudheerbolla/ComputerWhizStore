@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/ten_dp"
+        tools:context=".MainActivity">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtProductName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="@dimen/seven_dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtProductDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtProductName"
+            android:gravity="center_vertical"
+            android:padding="@dimen/three_dp"
+            android:textColor="@color/color_vvvDarkGrey"
+            android:textSize="15sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtProductDescription"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/txtSubCategory"
+            android:gravity="center_vertical"
+            android:padding="@dimen/five_dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtSubCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtProductDescription"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical"
+            android:padding="@dimen/five_dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="17sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtPrice"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtMinus"
+                android:layout_width="@dimen/thirtyfive_dp"
+                android:layout_height="@dimen/thirtyfive_dp"
+                android:background="@drawable/circle_round_background"
+                android:gravity="center"
+                android:text="-"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/twentyfive_sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtSelectedQuanity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/ten_dp"
+                android:text="0"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/eighteen_sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtPlus"
+                android:layout_width="@dimen/thirtyfive_dp"
+                android:layout_height="@dimen/thirtyfive_dp"
+                android:background="@drawable/circle_round_background"
+                android:gravity="center"
+                android:text="+"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/twentyfive_sp" />
+
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtQuanity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtSubCategory"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/txtPrice"
+            android:gravity="center_vertical"
+            android:padding="@dimen/five_dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtSubCategory"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical"
+            android:padding="@dimen/five_dp"
+            android:textColor="@color/colorRed"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+
+</layout>

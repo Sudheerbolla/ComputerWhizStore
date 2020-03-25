@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/txtCreateOrder"
+            android:background="@color/colorWhite"
+            android:fillViewport="true"
+            android:fitsSystemWindows="true"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewInventory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    android:padding="@dimen/seven_dp"
+                    android:scrollbars="none"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/five_dp"
+                    android:background="@color/colorBlack"
+                    android:padding="@dimen/ten_dp"
+                    android:text="@string/order_details"
+                    android:textColor="@color/colorWhite" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/seven_dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtTotalQuantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/three_dp"
+                        android:text="@string/total_qty"
+                        android:textColor="@color/colorBlack" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtSubTotal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/three_dp"
+                        android:text="@string/sub_total"
+                        android:textColor="@color/colorBlack" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtTotalTax"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/three_dp"
+                        android:text="@string/total_tax"
+                        android:textColor="@color/colorBlack" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtTotalDiscount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/three_dp"
+                        android:text="@string/total_discount"
+                        android:textColor="@color/colorBlack" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtTotalPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/three_dp"
+                        android:text="@string/total_price"
+                        android:textColor="@color/colorBlack" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/five_dp"
+                    android:background="@color/colorBlack"
+                    android:padding="@dimen/ten_dp"
+                    android:text="@string/customer_details"
+                    android:textColor="@color/colorWhite" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardCustomer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/five_dp"
+                    android:orientation="vertical"
+                    app:cardBackgroundColor="@color/colorWhite"
+                    app:cardCornerRadius="@dimen/seven_dp"
+                    app:cardElevation="@dimen/two_dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:contentPadding="@dimen/seven_dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtCustomerDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/seven_dp"
+                        android:text="@string/select_customer"
+                        android:textColor="@color/colorBlack" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/five_dp"
+                    android:background="@color/colorBlack"
+                    android:padding="@dimen/ten_dp"
+                    android:text="@string/address"
+                    android:textColor="@color/colorWhite" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/five_dp"
+                    android:orientation="vertical"
+                    app:cardBackgroundColor="@color/colorWhite"
+                    app:cardCornerRadius="@dimen/seven_dp"
+                    app:cardElevation="@dimen/two_dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:contentPadding="@dimen/seven_dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/seven_dp"
+                        android:text="@string/select_address"
+                        android:textColor="@color/colorBlack" />
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtCreateOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/square_bg_selector"
+            android:gravity="center"
+            android:padding="@dimen/ten_dp"
+            android:text="@string/create_order"
+            android:textColor="@color/btn_text_color_square"
+            android:textSize="@dimen/seventeen_sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</layout>

@@ -31,6 +31,7 @@ class Constants {
         val SCREEN_INVOICES = "SCREEN_INVOICES"
         val SCREEN_INVENTORY = "SCREEN_INVENTORY"
 
+        val SCREEN_SELECT_CUSTOMERS = "SCREEN_SELECT_CUSTOMERS"
     }
 
 }

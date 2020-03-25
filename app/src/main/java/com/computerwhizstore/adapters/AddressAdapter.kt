@@ -15,7 +15,6 @@ class AddressAdapter(
     itemsData: ArrayList<AddressesModel>,
     private var iClickListener: IClickListener?
 ) : RecyclerView.Adapter<AddressAdapter.ViewHolder>() {
-    private lateinit var mItemManger: ViewBinderHelper;
 
     private var customersArrayList: ArrayList<AddressesModel>? = itemsData
 

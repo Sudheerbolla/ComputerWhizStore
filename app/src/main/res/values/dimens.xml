@@ -67,6 +67,7 @@
     <dimen name="twentythree_sp">23sp</dimen>
     <dimen name="twentyfour_sp">24sp</dimen>
     <dimen name="twentyfive_sp">25sp</dimen>
+    <dimen name="twentyeight_sp">28sp</dimen>
 
     <dimen name="dashboard_text_size">18sp</dimen>
     <dimen name="dashboard_text_size_b">40sp</dimen>

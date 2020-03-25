@@ -145,7 +145,7 @@ class DbHelper(context: Context) {
                 salesReportsModel.customerId =
                     cursor.getInt(cursor.getColumnIndex(TableSales.customerId))
                 salesReportsModel.productId =
-                    cursor.getInt(cursor.getColumnIndex(TableSales.productId))
+                    cursor.getString(cursor.getColumnIndex(TableSales.productId))
                 salesReportsModel.salesPersonId =
                     cursor.getInt(cursor.getColumnIndex(TableSales.salesPersonId))
                 salesReportsModel.name =
@@ -199,7 +199,7 @@ class DbHelper(context: Context) {
                     salesReportsModel.customerId =
                         cursor.getInt(cursor.getColumnIndex(TableSales.customerId))
                     salesReportsModel.productId =
-                        cursor.getInt(cursor.getColumnIndex(TableSales.productId))
+                        cursor.getString(cursor.getColumnIndex(TableSales.productId))
                     salesReportsModel.salesPersonId =
                         cursor.getInt(cursor.getColumnIndex(TableSales.salesPersonId))
                     salesReportsModel.name =
@@ -289,38 +289,39 @@ class DbHelper(context: Context) {
             return arrayList
         }
 
-    val getAddressList: ArrayList<AddressesModel>
-        @Synchronized get() {
-            val arrayList = ArrayList<AddressesModel>()
-            val selectQuery =
-                "select * FROM " + TableAddress.TABLE_NAME + " ORDER BY " + TableAddress.addressId + " ASC"
-            databaseHandler.getReadableDatabase()
-            val cursor = databaseHandler.selectData(selectQuery, true)
-            if (cursor.moveToFirst()) {
-                do {
-                    val addressesModel = AddressesModel()
-                    addressesModel.addressId =
-                        cursor.getInt(cursor.getColumnIndex(TableAddress.addressId))
-                    addressesModel.customerId =
-                        cursor.getInt(cursor.getColumnIndex(TableAddress.customerId))
-                    addressesModel.city =
-                        cursor.getString(cursor.getColumnIndex(TableAddress.city))
-                    addressesModel.line1 =
-                        cursor.getString(cursor.getColumnIndex(TableAddress.line1))
-                    addressesModel.line2 =
-                        cursor.getString(cursor.getColumnIndex(TableAddress.line2))
-                    addressesModel.province =
-                        cursor.getString(cursor.getColumnIndex(TableAddress.province))
-                    addressesModel.zipcode =
-                        cursor.getString(cursor.getColumnIndex(TableAddress.zipcode))
-                    arrayList.add(addressesModel)
-                } while (cursor.moveToNext())
-            }
-            if (!cursor.isClosed()) {
-                cursor.close()
-            }
-            return arrayList
+    @Synchronized
+    fun getAddressList(customerId: Int): ArrayList<AddressesModel> {
+        val arrayList = ArrayList<AddressesModel>()
+        val selectQuery =
+            "select * FROM " + TableAddress.TABLE_NAME + " WHERE " + TableAddress.customerId +
+                    "='" + customerId + "'" + " ORDER BY " + TableAddress.addressId + " ASC"
+        databaseHandler.getReadableDatabase()
+        val cursor = databaseHandler.selectData(selectQuery, true)
+        if (cursor.moveToFirst()) {
+            do {
+                val addressesModel = AddressesModel()
+                addressesModel.addressId =
+                    cursor.getInt(cursor.getColumnIndex(TableAddress.addressId))
+                addressesModel.customerId =
+                    cursor.getInt(cursor.getColumnIndex(TableAddress.customerId))
+                addressesModel.city =
+                    cursor.getString(cursor.getColumnIndex(TableAddress.city))
+                addressesModel.line1 =
+                    cursor.getString(cursor.getColumnIndex(TableAddress.line1))
+                addressesModel.line2 =
+                    cursor.getString(cursor.getColumnIndex(TableAddress.line2))
+                addressesModel.province =
+                    cursor.getString(cursor.getColumnIndex(TableAddress.province))
+                addressesModel.zipcode =
+                    cursor.getString(cursor.getColumnIndex(TableAddress.zipcode))
+                arrayList.add(addressesModel)
+            } while (cursor.moveToNext())
         }
+        if (!cursor.isClosed()) {
+            cursor.close()
+        }
+        return arrayList
+    }
 
     /**
      * Delete all data in tables

@@ -63,7 +63,8 @@ class AddCustomerFragment : BaseFragment(), View.OnClickListener, IClickListener
             fragmentAddCustomersBinding.linAddress.visibility = View.VISIBLE
             addressArrayList = ArrayList()
             setAddressAdapter()
-            addressArrayList.addAll(DbHelper(mainActivity).getAddressList)
+            if (customersModel != null)
+                addressArrayList.addAll(DbHelper(mainActivity).getAddressList(customersModel?.customerId!!))
             fragmentAddCustomersBinding.txtAddAddress.setOnClickListener(this)
         }
         if (customersModel != null) {
@@ -80,7 +81,6 @@ class AddCustomerFragment : BaseFragment(), View.OnClickListener, IClickListener
             LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
         fragmentAddCustomersBinding.recyclerViewAddress.adapter =
             AddressAdapter(addressArrayList, this)
-
     }
 
     override fun onAttach(context: Context) {

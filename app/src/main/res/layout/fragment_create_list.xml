@@ -5,12 +5,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorWhite">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@id/lin_create_order"
             tools:context=".MainActivity">
 
             <RelativeLayout
@@ -92,17 +92,59 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imgAddRecord"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/lin_create_order"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/twentyfive_dp"
-            android:background="@drawable/circle_bg"
-            android:padding="@dimen/fifteen_dp"
-            app:elevation="@dimen/three_dp"
-            app:srcCompat="@drawable/ic_add" />
+            android:background="@drawable/square_bg_selector"
+            android:gravity="center_vertical"
+            android:padding="@dimen/seven_dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toStartOf="@id/linOrderDetails"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/ten_dp"
+                android:text="@string/proceed"
+                android:textColor="@color/btn_text_color_square"
+                android:textSize="@dimen/seventeen_sp" />
+
+            <LinearLayout
+                android:id="@+id/linOrderDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="end"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/five_dp"
+                android:paddingEnd="@dimen/seven_dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtTotalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_price"
+                    android:textAlignment="center"
+                    android:textColor="@color/btn_text_color_square"
+                    android:textSize="@dimen/fifteen_sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtTotalQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_qty"
+                    android:textAlignment="center"
+                    android:textColor="@color/btn_text_color_square"
+                    android:textSize="@dimen/thirteen_sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

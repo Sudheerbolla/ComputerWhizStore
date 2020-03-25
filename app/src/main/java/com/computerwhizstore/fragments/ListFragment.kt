@@ -1,5 +1,7 @@
 package com.computerwhizstore.fragments
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -106,13 +108,13 @@ class ListFragment : BaseFragment(), IClickListener, View.OnClickListener,
                     }
                 })
                 salesReportsModelListArrayList = ArrayList()
-//            salesReportsModelListArrayList?.addAll(DbHelper(mainActivity).getSalesReportsList)
-                for (i in 0..10) {
-                    salesReportsModelListArrayList?.add(SalesReportsModel())
-                }
+                salesReportsModelListArrayList?.addAll(DbHelper(mainActivity).getSalesReportsList)
+//                for (i in 0..10) {
+//                    salesReportsModelListArrayList?.add(SalesReportsModel())
+//                }
                 setSalesListAdapter()
             }
-            Constants.SCREEN_CUSTOMERS -> {
+            Constants.SCREEN_CUSTOMERS, Constants.SCREEN_SELECT_CUSTOMERS -> {
                 binding.edtSearchBar.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable?) {
 
@@ -345,6 +347,14 @@ class ListFragment : BaseFragment(), IClickListener, View.OnClickListener,
                 val selectedModel = customersModelListArrayList?.get(position)
                 mainActivity.replaceFragment(AddCustomerFragment.newInstance(selectedModel!!), true)
             }
+            Constants.SCREEN_SELECT_CUSTOMERS -> {
+                val selectedModel = customersModelListArrayList?.get(position)
+                val intent = Intent()
+                intent.putExtra("selectedCustomer", selectedModel)
+                mainActivity.popBackStack()
+                mainActivity.setTopBar(getString(R.string.order_details))
+                targetFragment?.onActivityResult(targetRequestCode, Activity.RESULT_OK, intent)
+            }
         }
     }
 
@@ -361,6 +371,9 @@ class ListFragment : BaseFragment(), IClickListener, View.OnClickListener,
                     }
                     Constants.SCREEN_CUSTOMERS -> {
                         mainActivity.replaceFragment(AddCustomerFragment(), true)
+                    }
+                    Constants.SCREEN_SALES -> {
+                        mainActivity.replaceFragment(AddSalesFragment(), true)
                     }
                 }
             }

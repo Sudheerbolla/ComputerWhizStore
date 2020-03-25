@@ -8,13 +8,11 @@ import com.computerwhizstore.R
 import com.computerwhizstore.databinding.ItemInventoryBinding
 import com.computerwhizstore.interfaces.IClickListener
 import com.computerwhizstore.models.InventoryModel
-import com.computerwhizstore.utils.views.swipeutils.ViewBinderHelper
 
-class InventoryAdapter(
+class InventoryDetailsAdapter(
     itemsData: ArrayList<InventoryModel>,
     private var iClickListener: IClickListener?
-) : RecyclerView.Adapter<InventoryAdapter.ViewHolder>() {
-    private lateinit var mItemManger: ViewBinderHelper;
+) : RecyclerView.Adapter<InventoryDetailsAdapter.ViewHolder>() {
 
     private var customersArrayList: ArrayList<InventoryModel>? = itemsData
 
@@ -38,14 +36,12 @@ class InventoryAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(categoriesModel: InventoryModel, iClickListener: IClickListener?) {
             binding.txtProductName.text = "${categoriesModel.productName}"
-            binding.txtPrice.text = "$ ${categoriesModel.unitPrice}"
+            binding.txtPrice.text =
+                "$ ${categoriesModel.selectedQuantity!! * categoriesModel.unitPrice!!}"
             binding.txtProductDescription.text = "${categoriesModel.productDescription}"
-            binding.txtQuanity.text = "Available Quantity: ${categoriesModel.quantity}"
+            binding.txtQuanity.text = "${categoriesModel.selectedQuantity} x Quantity"
             binding.txtCategory.text = "${categoriesModel.categoryId}"
             binding.txtSubCategory.text = "${categoriesModel.subCategoryId}"
-            binding.root.setOnClickListener { v ->
-                if (iClickListener != null) iClickListener.onClick(v, adapterPosition)
-            }
         }
 
     }

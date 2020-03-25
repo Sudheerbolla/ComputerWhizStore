@@ -37,7 +37,7 @@ internal object TableSales {
 
         CREATE_TABLE =
             "create table if not exists $TABLE_NAME ( $salesId INTEGER PRIMARY KEY NOT NULL, $name" +
-                    " TEXT, $timeStamp BLOB, $productId INTEGER, $customerId INTEGER, $addressId INTEGER, $subTotal REAL, $tax1 REAL, $tax2 REAL, $totalAmount REAL, $discount REAL, $quantity INTEGER, UNIQUE ($salesId) ON CONFLICT REPLACE);"
+                    " TEXT, $timeStamp BLOB, $productId TEXT, $customerId INTEGER, $addressId INTEGER, $subTotal REAL, $tax1 REAL, $tax2 REAL, $totalAmount REAL, $discount REAL, $quantity INTEGER, UNIQUE ($salesId) ON CONFLICT REPLACE);"
 
     }
 
