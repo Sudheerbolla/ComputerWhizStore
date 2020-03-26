@@ -23,6 +23,8 @@ import com.computerwhizstore.models.SalesReportsModel
 import com.computerwhizstore.utils.Constants
 import com.computerwhizstore.utils.StaticUtils
 import com.computerwhizstore.utils.dbutils.DbHelper
+import org.json.JSONArray
+import org.json.JSONObject
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -43,11 +45,11 @@ class CreateOrderFragment : BaseFragment(), View.OnClickListener {
         }
     }
 
-    private lateinit var addressesModel: AddressesModel
+    private var addressesModel: AddressesModel? = null
     private var tax: Double? = 0.0
     private var discount: Double? = 0.0
     private var finalPrice: Double? = 0.0
-    private lateinit var customerModel: CustomersModel
+    private var customerModel: CustomersModel? = null
     private lateinit var mainActivity: MainActivity
     private lateinit var binding: FragmentCreateOrderBinding
     private var totalQuantity: Int? = 0
@@ -83,6 +85,9 @@ class CreateOrderFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun initComponents() {
+        binding.txtCreateOrder.visibility = View.VISIBLE
+        binding.linButtons.visibility = View.GONE
+
         binding.txtCreateOrder.setOnClickListener(this)
         binding.txtCustomerDetails.setOnClickListener(this)
         binding.txtAddress.setOnClickListener(this)
@@ -90,10 +95,10 @@ class CreateOrderFragment : BaseFragment(), View.OnClickListener {
         tax = ((12 * totalPrice!!) / 100)
         discount = ((10 * totalPrice!!) / 100)
         finalPrice = (totalPrice!!.plus(tax!!).minus(discount!!))
-        binding.txtSubTotal.text = "${getString(R.string.sub_total)} ${totalPrice}"
+        binding.txtSubTotal.text = "${getString(R.string.sub_total)} $ ${totalPrice}"
         binding.txtTotalQuantity.text = "${getString(R.string.total_qty)} ${totalQuantity}"
-        binding.txtTotalDiscount.text = "${getString(R.string.total_discount)} @10% :${discount}"
-        binding.txtTotalTax.text = "${getString(R.string.total_tax)} @12% :${tax}"
+        binding.txtTotalDiscount.text = "${getString(R.string.total_discount)} @10% : $ ${discount}"
+        binding.txtTotalTax.text = "${getString(R.string.total_tax)} @12% : $ ${tax}"
         binding.txtTotalPrice.text = "${getString(R.string.total_price)} $ ${finalPrice}"
 
         ViewCompat.setNestedScrollingEnabled(binding.recyclerViewInventory, false)
@@ -118,30 +123,25 @@ class CreateOrderFragment : BaseFragment(), View.OnClickListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1) {
-            if (resultCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == 1) {
                 customerModel = data?.getParcelableExtra("selectedCustomer")!!
                 binding.txtCustomerDetails.text =
-                    "${customerModel.firstName} ${customerModel.middleName} ${customerModel.lastName} \n${customerModel.emailAddress} \n${customerModel.phoneNumber} "
+                    "${customerModel?.firstName} ${customerModel?.middleName} ${customerModel?.lastName} \n${customerModel?.emailAddress} \n${customerModel?.phoneNumber} "
                 val addressArrayList =
-                    DbHelper(mainActivity).getAddressList(customerModel.customerId!!)
-//                addressArrayList
+                    DbHelper(mainActivity).getAddressList(customerModel?.customerId!!)
                 if (addressArrayList != null && addressArrayList.isNotEmpty()) {
                     addressesModel = addressArrayList.get(0)
                     binding.txtAddress.text =
-                        "${addressesModel.line1} \n${addressesModel.line2} \n${addressesModel.city}, ${addressesModel.province}, ${addressesModel.zipcode}"
+                        "${addressesModel?.line1} \n${addressesModel?.line2} \n${addressesModel?.city}, ${addressesModel?.province}, ${addressesModel?.zipcode}"
                 }
-            } else if (resultCode == Activity.RESULT_CANCELED) {
+            } else if (requestCode == 2) {
+                addressesModel = data?.getParcelableExtra("addressesModel")!!
+                binding.txtAddress.text =
+                    "${addressesModel?.line1} \n${addressesModel?.line2} \n${addressesModel?.city}, ${addressesModel?.province}, ${addressesModel?.zipcode}"
             }
         }
     }
-
-    /*fun onExit(selectionValue: String){
-        val intent = Intent()
-        intent.putExtra("selection",selectionValue)
-        intent.putExtra(TYPE,type)
-        targetFragment?.onActivityResult(targetRequestCode, Activity.RESULT_OK, intent)
-    }*/
 
     override fun onClick(v: View?) {
         when (v!!.id) {
@@ -151,52 +151,68 @@ class CreateOrderFragment : BaseFragment(), View.OnClickListener {
                 mainActivity.addFragment(frag, true)
             }
             R.id.txtCreateOrder -> {
-                val message: String = checkValidations()
+                val message = checkValidations()
                 if (TextUtils.isEmpty(message)) {
                     addToSalesRecordToDatabase()
                 } else StaticUtils.showSimpleToast(mainActivity, message)
             }
             R.id.txtAddress -> {
-                if (customerModel == null || customerModel.customerId == null) {
+                if (customerModel == null || customerModel?.customerId == null) {
                     StaticUtils.showSimpleToast(
-                        mainActivity,
-                        "Please Select Customer before selecting Address"
+                        mainActivity, "Please Select Customer before selecting Address"
                     )
-                }/*else val frag: Fragment = ListFragment.newInstance(Constants.SCREEN_SELECT_CUSTOMERS)
-                frag.setTargetFragment(this, 1)
-                mainActivity.addFragment(frag, true)*/
+                } else {
+                    val frag: Fragment = AddAddressFragment.newInstance(
+                        customerModel?.customerId!!, addressesModel, true
+                    )
+                    frag.setTargetFragment(this, 2)
+                    mainActivity.addFragment(frag, true)
+                }
             }
         }
     }
 
     private fun addToSalesRecordToDatabase() {
+        val productInfoArray = JSONArray()
         var pid = ""
         var name = ""
         for (inv in inventoryModelListArrayList!!) {
             pid = pid + "," + inv.inventoryId
-            name = name +","+ inv.productName
+            name = name + "," + inv.productName
+            val productInfoObject = JSONObject()
+            productInfoObject.put("subCategoryId", inv.subCategoryId)
+            productInfoObject.put("categoryId", inv.categoryId)
+            productInfoObject.put("productId", inv.inventoryId)
+            productInfoObject.put("quantity", inv.selectedQuantity)
+            productInfoObject.put("name", inv.productName)
+            productInfoObject.put("totalPrice", (inv.selectedQuantity!! * inv.unitPrice!!))
+            productInfoArray.put(productInfoObject)
         }
         val salesReportsModel = SalesReportsModel()
         salesReportsModel.timeStamp = Calendar.getInstance().timeInMillis
         salesReportsModel.discount = discount
         salesReportsModel.totalAmount = finalPrice
         salesReportsModel.subTotal = totalPrice
-        salesReportsModel.customerId = customerModel.customerId
-        salesReportsModel.addressId = addressesModel.addressId
+        salesReportsModel.customerId = customerModel?.customerId
+        salesReportsModel.addressId = addressesModel?.addressId
         salesReportsModel.productId = pid
+        salesReportsModel.productObject = productInfoArray.toString()
         salesReportsModel.tax1 = tax
         salesReportsModel.quantity = totalQuantity
         salesReportsModel.name = name
         DbHelper(mainActivity).addSalesReport(salesReportsModel)
+
+        StaticUtils.showSimpleToast(mainActivity, "Order Created Successfully.")
+
+        mainActivity.clearBackStack()
+        mainActivity.replaceFragment(DashboardFragment(), false)
+
     }
 
     private fun checkValidations(): String {
-//        if()
+        if (customerModel == null || customerModel?.customerId == null) return "Please Select Customer"
+        if (addressesModel == null || addressesModel?.addressId == null) return "Please Select Address"
         return ""
-    }
-
-    private fun navigateToNextScreen() {
-//        mainActivity.replaceFragment()
     }
 
 }

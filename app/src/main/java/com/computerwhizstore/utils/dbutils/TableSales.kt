@@ -6,7 +6,6 @@ internal object TableSales {
     var name: String? = null
     var subTotal: String? = null
     var tax1: String? = null
-    var tax2: String? = null
     var totalAmount: String? = null
     var discount: String? = null
     var productId: String? = null
@@ -15,6 +14,7 @@ internal object TableSales {
     var salesPersonId: String? = null
     var customerId: String? = null
     var addressId: String? = null
+    var productObject: String? = null
 
     val TABLE_NAME = "TableSales"
     var CREATE_TABLE: String
@@ -25,7 +25,6 @@ internal object TableSales {
         salesId = "zOrderId"
         subTotal = "zSubTotal"
         tax1 = "zTax1"
-        tax2 = "zTax2"
         totalAmount = "zTotalAmount"
         discount = "zDiscount"
         productId = "zProductId"
@@ -34,10 +33,11 @@ internal object TableSales {
         salesPersonId = "zSalesPersonId"
         customerId = "zCustomerId"
         addressId = "zSalesPersonId"
+        productObject = "zProductObject"
 
         CREATE_TABLE =
             "create table if not exists $TABLE_NAME ( $salesId INTEGER PRIMARY KEY NOT NULL, $name" +
-                    " TEXT, $timeStamp BLOB, $productId TEXT, $customerId INTEGER, $addressId INTEGER, $subTotal REAL, $tax1 REAL, $tax2 REAL, $totalAmount REAL, $discount REAL, $quantity INTEGER, UNIQUE ($salesId) ON CONFLICT REPLACE);"
+                    " TEXT, $timeStamp BLOB, $productId TEXT, $productObject TEXT, $customerId INTEGER, $addressId INTEGER, $subTotal REAL, $tax1 REAL, $totalAmount REAL, $discount REAL, $quantity INTEGER, UNIQUE ($salesId) ON CONFLICT REPLACE);"
 
     }
 

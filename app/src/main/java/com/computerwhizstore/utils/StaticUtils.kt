@@ -637,6 +637,15 @@ class StaticUtils {
             return dateStr
         }
 
+        fun getDateFromTimeStamp(timeStamp: Long?): String {
+            val cal = Calendar.getInstance()
+            cal.timeInMillis = timeStamp!!
+            val date = cal.time
+            val formatter = SimpleDateFormat(serverTimeFormat, Locale.US)
+            val dateStr = formatter.format(date)
+            return dateStr
+        }
+
         fun getDateFromCalender(timeStamp: Date?): String {
             val formatter = SimpleDateFormat(displayDateFormat, Locale.US)
             val dateStr = formatter.format(timeStamp!!)

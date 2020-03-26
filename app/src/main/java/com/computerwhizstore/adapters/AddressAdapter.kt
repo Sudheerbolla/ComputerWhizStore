@@ -8,8 +8,6 @@ import com.computerwhizstore.R
 import com.computerwhizstore.databinding.ItemAddressBinding
 import com.computerwhizstore.interfaces.IClickListener
 import com.computerwhizstore.models.AddressesModel
-import com.computerwhizstore.models.CustomersModel
-import com.computerwhizstore.utils.views.swipeutils.ViewBinderHelper
 
 class AddressAdapter(
     itemsData: ArrayList<AddressesModel>,

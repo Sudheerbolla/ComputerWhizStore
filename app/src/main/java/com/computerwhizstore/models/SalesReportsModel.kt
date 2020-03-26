@@ -9,22 +9,22 @@ class SalesReportsModel() : Parcelable {
     var name: String? = null
     var subTotal: Double? = null
     var tax1: Double? = null
-    var tax2: Double? = null
     var totalAmount: Double? = null
     var discount: Double? = null
     var quantity: Int? = null
     var timeStamp: Long? = null
     var productId: String? = null
+    var productObject: String? = null
     var addressId: Int? = null
     var customerId: Int? = null
     var salesPersonId: Int? = null
 
     constructor(parcel: Parcel) : this() {
         salesId = parcel.readInt()
+        productObject = parcel.readString()
         name = parcel.readString()
         subTotal = parcel.readValue(Double::class.java.classLoader) as? Double
         tax1 = parcel.readValue(Double::class.java.classLoader) as? Double
-        tax2 = parcel.readValue(Double::class.java.classLoader) as? Double
         totalAmount = parcel.readValue(Double::class.java.classLoader) as? Double
         discount = parcel.readValue(Double::class.java.classLoader) as? Double
         quantity = parcel.readValue(Int::class.java.classLoader) as? Int
@@ -38,9 +38,9 @@ class SalesReportsModel() : Parcelable {
     override fun writeToParcel(dest: Parcel?, flags: Int) {
         dest?.writeValue(salesId)
         dest?.writeString(name)
+        dest?.writeString(productObject)
         dest?.writeValue(subTotal)
         dest?.writeValue(tax1)
-        dest?.writeValue(tax2)
         dest?.writeValue(totalAmount)
         dest?.writeValue(discount)
         dest?.writeValue(quantity)

@@ -14,10 +14,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.computerwhizstore.MainActivity
 import com.computerwhizstore.R
-import com.computerwhizstore.adapters.*
+import com.computerwhizstore.adapters.CustomersAdapter
+import com.computerwhizstore.adapters.InventoryAdapter
+import com.computerwhizstore.adapters.SalesListAdapter
 import com.computerwhizstore.databinding.FragmentListBinding
 import com.computerwhizstore.interfaces.IClickListener
-import com.computerwhizstore.models.*
+import com.computerwhizstore.models.CustomersModel
+import com.computerwhizstore.models.InventoryModel
+import com.computerwhizstore.models.SalesReportsModel
 import com.computerwhizstore.utils.Constants
 import com.computerwhizstore.utils.StaticUtils
 import com.computerwhizstore.utils.dbutils.DbHelper
@@ -42,15 +46,16 @@ class ListFragment : BaseFragment(), IClickListener, View.OnClickListener,
     private var salesReportsModelListArrayList: ArrayList<SalesReportsModel>? = null
     private var customersModelListArrayList: ArrayList<CustomersModel>? = null
     private var inventoryModelListArrayList: ArrayList<InventoryModel>? = null
-    private var invoicesModelListArrayList: ArrayList<InvoiceModel>? = null
-    private var packagingSlipsModelListArrayList: ArrayList<PackagingSlipsModel>? = null
+//    private var invoicesModelListArrayList: ArrayList<InvoiceModel>? = null
+//    private var packagingSlipsModelListArrayList: ArrayList<PackagingSlipsModel>? = null
 
     private lateinit var mainActivity: MainActivity
 
     private var salesListAdapter: SalesListAdapter? = null
     private var customersAdapter: CustomersAdapter? = null
-    private var invoicesAdapter: InvoicesAdapter? = null
-    private var packagingSlipsAdapter: PackagingSlipsAdapter? = null
+
+    //    private var invoicesAdapter: InvoicesAdapter? = null
+//    private var packagingSlipsAdapter: PackagingSlipsAdapter? = null
     private var inventoryAdapter: InventoryAdapter? = null
 
     private var isFrom: String? = ""
@@ -166,6 +171,7 @@ class ListFragment : BaseFragment(), IClickListener, View.OnClickListener,
                 inventoryModelListArrayList?.addAll(DbHelper(mainActivity).getInventoryList)
                 setInventoryListAdapter()
             }
+/*
             Constants.SCREEN_INVOICES -> {
                 binding.edtSearchBar.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable?) {
@@ -222,6 +228,7 @@ class ListFragment : BaseFragment(), IClickListener, View.OnClickListener,
                 }
                 setPackagingSlipsListAdapter()
             }
+*/
         }
         binding.imgAddRecord.setOnClickListener(this)
     }
@@ -270,7 +277,7 @@ class ListFragment : BaseFragment(), IClickListener, View.OnClickListener,
         }
     }
 
-    private fun setPackagingSlipsListAdapter() {
+    /*private fun setPackagingSlipsListAdapter() {
         setLayoutManagerAndDec()
 
         packagingSlipsAdapter = PackagingSlipsAdapter(packagingSlipsModelListArrayList!!, this)
@@ -294,7 +301,7 @@ class ListFragment : BaseFragment(), IClickListener, View.OnClickListener,
         } else {
             showList()
         }
-    }
+    }*/
 
     private fun setInventoryListAdapter() {
         setLayoutManagerAndDec()
@@ -339,8 +346,7 @@ class ListFragment : BaseFragment(), IClickListener, View.OnClickListener,
             Constants.SCREEN_INVENTORY -> {
                 val selectedModel = inventoryModelListArrayList?.get(position)
                 mainActivity.replaceFragment(
-                    AddInventoryFragment.newInstance(selectedModel!!),
-                    true
+                    AddInventoryFragment.newInstance(selectedModel!!), true
                 )
             }
             Constants.SCREEN_CUSTOMERS -> {
@@ -354,6 +360,12 @@ class ListFragment : BaseFragment(), IClickListener, View.OnClickListener,
                 mainActivity.popBackStack()
                 mainActivity.setTopBar(getString(R.string.order_details))
                 targetFragment?.onActivityResult(targetRequestCode, Activity.RESULT_OK, intent)
+            }
+            Constants.SCREEN_SALES -> {
+                val selectedModel = salesReportsModelListArrayList?.get(position)
+                mainActivity.replaceFragment(
+                    OrderDetailsFragment.newInstance(selectedModel!!.salesId!!), true
+                )
             }
         }
     }

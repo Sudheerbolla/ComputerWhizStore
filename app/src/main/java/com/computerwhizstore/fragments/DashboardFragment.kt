@@ -25,6 +25,9 @@ class DashboardFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun initComponents() {
+        fragmentDashboardBinding.txtPackagingSlips.visibility = View.GONE
+        fragmentDashboardBinding.txtInvoices.visibility = View.GONE
+
         fragmentDashboardBinding.txtCustomerReports.setOnClickListener(this)
         fragmentDashboardBinding.txtSalesReport.setOnClickListener(this)
         fragmentDashboardBinding.txtPackagingSlips.setOnClickListener(this)
@@ -53,18 +56,18 @@ class DashboardFragment : BaseFragment(), View.OnClickListener {
                     true
                 )
             }
-            R.id.txtPackagingSlips -> {
-                mainActivity.replaceFragment(
-                    ListFragment.newInstance(Constants.SCREEN_PACKAGING_SLIPS),
-                    true
-                )
-            }
-            R.id.txtInvoices -> {
-                mainActivity.replaceFragment(
-                    ListFragment.newInstance(Constants.SCREEN_INVOICES),
-                    true
-                )
-            }
+//            R.id.txtPackagingSlips -> {
+//                mainActivity.replaceFragment(
+//                    ListFragment.newInstance(Constants.SCREEN_PACKAGING_SLIPS),
+//                    true
+//                )
+//            }
+//            R.id.txtInvoices -> {
+//                mainActivity.replaceFragment(
+//                    ListFragment.newInstance(Constants.SCREEN_INVOICES),
+//                    true
+//                )
+//            }
             R.id.txtInventory -> {
                 mainActivity.replaceFragment(
                     ListFragment.newInstance(Constants.SCREEN_INVENTORY),

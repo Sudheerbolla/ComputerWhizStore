@@ -8,13 +8,12 @@ import com.computerwhizstore.R
 import com.computerwhizstore.databinding.ItemSalesReportBinding
 import com.computerwhizstore.interfaces.IClickListener
 import com.computerwhizstore.models.SalesReportsModel
-import com.computerwhizstore.utils.views.swipeutils.ViewBinderHelper
+import com.computerwhizstore.utils.StaticUtils
 
 class SalesListAdapter(
     itemsData: ArrayList<SalesReportsModel>,
     private var iClickListener: IClickListener?
 ) : RecyclerView.Adapter<SalesListAdapter.ViewHolder>() {
-    private lateinit var mItemManger: ViewBinderHelper;
 
     private var categoriesArrayList: ArrayList<SalesReportsModel>? = itemsData
 
@@ -37,7 +36,9 @@ class SalesListAdapter(
     class ViewHolder(var binding: ItemSalesReportBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(categoriesModel: SalesReportsModel, iClickListener: IClickListener?) {
-            binding.txtName.text = categoriesModel.name
+            binding.txtName.text = "Sales Id: ${categoriesModel.salesId}"
+            binding.txtPrice.text = "Amount: $ ${categoriesModel.totalAmount}"
+            binding.txtDate.text = "${StaticUtils.getDateFromTimeStamp(categoriesModel.timeStamp)}"
             binding.root.setOnClickListener { v ->
                 if (iClickListener != null) iClickListener.onClick(v, adapterPosition)
             }

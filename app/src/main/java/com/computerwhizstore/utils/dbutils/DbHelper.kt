@@ -24,9 +24,9 @@ class DbHelper(context: Context) {
         databaseHandler.getWritableDatabase()
         val values = ContentValues()
         values.put(TableSales.name, salesReportsModel.name)
+        values.put(TableSales.name, salesReportsModel.productObject)
         values.put(TableSales.subTotal, salesReportsModel.subTotal)
         values.put(TableSales.tax1, salesReportsModel.tax1)
-        values.put(TableSales.tax2, salesReportsModel.tax2)
         values.put(TableSales.totalAmount, salesReportsModel.totalAmount)
         values.put(TableSales.discount, salesReportsModel.discount)
         values.put(TableSales.productId, salesReportsModel.productId)
@@ -127,7 +127,7 @@ class DbHelper(context: Context) {
     }
 
     @Synchronized
-    fun getSalesReportsModel(salesId: String): SalesReportsModel {
+    fun getSalesReportsModel(salesId: Int): SalesReportsModel {
         val salesReportsModel = SalesReportsModel()
         val selectQuery =
             "select * FROM " + TableSales.TABLE_NAME + " WHERE " + TableSales.salesId + "='" + salesId + "'"
@@ -146,6 +146,9 @@ class DbHelper(context: Context) {
                     cursor.getInt(cursor.getColumnIndex(TableSales.customerId))
                 salesReportsModel.productId =
                     cursor.getString(cursor.getColumnIndex(TableSales.productId))
+                salesReportsModel.productObject =
+                    if (cursor.columnNames.contains(TableSales.productObject))
+                        cursor.getString(cursor.getColumnIndex(TableSales.productObject)) else ""
                 salesReportsModel.salesPersonId =
                     cursor.getInt(cursor.getColumnIndex(TableSales.salesPersonId))
                 salesReportsModel.name =
@@ -154,8 +157,6 @@ class DbHelper(context: Context) {
                     cursor.getDouble(cursor.getColumnIndex(TableSales.subTotal))
                 salesReportsModel.tax1 =
                     cursor.getDouble(cursor.getColumnIndex(TableSales.tax1))
-                salesReportsModel.tax2 =
-                    cursor.getDouble(cursor.getColumnIndex(TableSales.tax2))
                 salesReportsModel.totalAmount =
                     cursor.getDouble(cursor.getColumnIndex(TableSales.totalAmount))
                 salesReportsModel.discount =
@@ -166,6 +167,99 @@ class DbHelper(context: Context) {
             cursor.close()
         }
         return salesReportsModel
+    }
+
+    @Synchronized
+    fun getCustomer(customerId: Int): CustomersModel {
+        val customersModel = CustomersModel()
+        val selectQuery =
+            "select * FROM " + TableCustomers.TABLE_NAME + " WHERE " + TableCustomers.customerId + "='" + customerId + "'"
+        databaseHandler.getReadableDatabase()
+        val cursor = databaseHandler.selectData(selectQuery, true)
+        if (cursor.moveToFirst()) {
+            do {
+                customersModel.customerId =
+                    cursor.getInt(cursor.getColumnIndex(TableCustomers.customerId))
+                customersModel.firstName =
+                    cursor.getString(cursor.getColumnIndex(TableCustomers.firstName))
+                customersModel.lastName =
+                    cursor.getString(cursor.getColumnIndex(TableCustomers.lastName))
+                customersModel.middleName =
+                    cursor.getString(cursor.getColumnIndex(TableCustomers.middleName))
+                customersModel.emailAddress =
+                    cursor.getString(cursor.getColumnIndex(TableCustomers.emailAddress))
+                customersModel.phoneNumber =
+                    cursor.getString(cursor.getColumnIndex(TableCustomers.phoneNumber))
+            } while (cursor.moveToNext())
+        }
+        if (!cursor.isClosed()) {
+            cursor.close()
+        }
+        return customersModel
+    }
+
+    @Synchronized
+    fun getCustomerAddress(addressId: Int): AddressesModel {
+        val addressesModel = AddressesModel()
+        val selectQuery =
+            "select * FROM " + TableAddress.TABLE_NAME + " WHERE " + TableAddress.addressId + "='" + addressId + "'"
+        databaseHandler.getReadableDatabase()
+        val cursor = databaseHandler.selectData(selectQuery, true)
+        if (cursor.moveToFirst()) {
+            do {
+                addressesModel.addressId =
+                    cursor.getInt(cursor.getColumnIndex(TableAddress.addressId))
+                addressesModel.customerId =
+                    cursor.getInt(cursor.getColumnIndex(TableAddress.customerId))
+                addressesModel.city =
+                    cursor.getString(cursor.getColumnIndex(TableAddress.city))
+                addressesModel.line1 =
+                    cursor.getString(cursor.getColumnIndex(TableAddress.line1))
+                addressesModel.line2 =
+                    cursor.getString(cursor.getColumnIndex(TableAddress.line2))
+                addressesModel.province =
+                    cursor.getString(cursor.getColumnIndex(TableAddress.province))
+                addressesModel.zipcode =
+                    cursor.getString(cursor.getColumnIndex(TableAddress.zipcode))
+            } while (cursor.moveToNext())
+        }
+        if (!cursor.isClosed()) {
+            cursor.close()
+        }
+        return addressesModel
+    }
+
+    @Synchronized
+    fun getInventoryItem(inventoryId: String): InventoryModel {
+        val inventoryModel = InventoryModel()
+        val selectQuery =
+            "select * FROM " + TableInventory.TABLE_NAME + " WHERE " + TableInventory.inventoryId + "='" + inventoryId + "'"
+        databaseHandler.getReadableDatabase()
+        val cursor = databaseHandler.selectData(selectQuery, true)
+        if (cursor.moveToFirst()) {
+            do {
+                inventoryModel.quantity =
+                    cursor.getInt(cursor.getColumnIndex(TableInventory.quantity))
+                inventoryModel.productName =
+                    cursor.getString(cursor.getColumnIndex(TableInventory.name))
+                inventoryModel.brand =
+                    cursor.getString(cursor.getColumnIndex(TableInventory.brand))
+                inventoryModel.categoryId =
+                    cursor.getInt(cursor.getColumnIndex(TableInventory.categoryId))
+                inventoryModel.subCategoryId =
+                    cursor.getInt(cursor.getColumnIndex(TableInventory.subCategoryId))
+                inventoryModel.inventoryId =
+                    cursor.getInt(cursor.getColumnIndex(TableInventory.inventoryId))
+                inventoryModel.productDescription =
+                    cursor.getString(cursor.getColumnIndex(TableInventory.description))
+                inventoryModel.unitPrice =
+                    cursor.getDouble(cursor.getColumnIndex(TableInventory.price))
+            } while (cursor.moveToNext())
+        }
+        if (!cursor.isClosed()) {
+            cursor.close()
+        }
+        return inventoryModel
     }
 
     /*val getSalesReportsListSize: String
@@ -208,8 +302,6 @@ class DbHelper(context: Context) {
                         cursor.getDouble(cursor.getColumnIndex(TableSales.subTotal))
                     salesReportsModel.tax1 =
                         cursor.getDouble(cursor.getColumnIndex(TableSales.tax1))
-                    salesReportsModel.tax2 =
-                        cursor.getDouble(cursor.getColumnIndex(TableSales.tax2))
                     salesReportsModel.totalAmount =
                         cursor.getDouble(cursor.getColumnIndex(TableSales.totalAmount))
                     salesReportsModel.discount =

@@ -49,7 +49,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 onBackPressed()
             }
             R.id.txtLogout -> {
-                PopUtils.simpleDialog(this, "Are you sue you wnt to Logout?", "Logout",
+                PopUtils.simpleDialog(this, "Are you sue you want to Logout?", "Logout",
                     DialogInterface.OnClickListener { dialog, which ->
                         run {
                             AppLocalStorage.getInstance(this).clear()

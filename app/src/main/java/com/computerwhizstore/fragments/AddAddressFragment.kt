@@ -1,6 +1,8 @@
 package com.computerwhizstore.fragments
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -18,9 +20,18 @@ class AddAddressFragment : BaseFragment(), View.OnClickListener {
 
     companion object {
         fun newInstance(customerId: Int, addressesModel: AddressesModel?): AddAddressFragment {
+            return newInstance(customerId, addressesModel, false)
+        }
+
+        fun newInstance(
+            customerId: Int,
+            addressesModel: AddressesModel?,
+            isFromOrder: Boolean?
+        ): AddAddressFragment {
             val addCustomerFragment = AddAddressFragment()
             val bundle = Bundle()
             bundle.putInt("customerId", customerId)
+            bundle.putBoolean("isFromOrder", isFromOrder!!)
             if (addressesModel != null)
                 bundle.putParcelable("addressObject", addressesModel)
             addCustomerFragment.arguments = bundle
@@ -28,6 +39,7 @@ class AddAddressFragment : BaseFragment(), View.OnClickListener {
         }
     }
 
+    private var isFromOrder: Boolean? = null
     private var customerId: Int? = null
     private var addressesModel: AddressesModel? = null
     private lateinit var mainActivity: MainActivity
@@ -52,7 +64,9 @@ class AddAddressFragment : BaseFragment(), View.OnClickListener {
             if (this != null && this.containsKey("customerId")) {
                 customerId = getInt("customerId", 0)
             }
-
+            if (this != null && this.containsKey("isFromOrder")) {
+                isFromOrder = getBoolean("isFromOrder", false)
+            }
         }
     }
 
@@ -97,8 +111,14 @@ class AddAddressFragment : BaseFragment(), View.OnClickListener {
         addressesModel?.province = fragmentAddAddressBinding.edtProvince.text.toString()
         addressesModel?.city = fragmentAddAddressBinding.edtCity.text.toString()
         addressesModel?.customerId = customerId
-        DbHelper(mainActivity).addAddress(addressesModel!!)
+        addressesModel?.addressId = DbHelper(mainActivity).addAddress(addressesModel!!).toInt()
         StaticUtils.showSimpleToast(mainActivity, "Record Added Successfully")
+        if (isFromOrder!!) {
+            val intent = Intent()
+            intent.putExtra("addressesModel", addressesModel)
+            mainActivity.setTopBar(getString(R.string.order_details))
+            targetFragment?.onActivityResult(targetRequestCode, Activity.RESULT_OK, intent)
+        }
         mainActivity.popBackStack()
     }
 
@@ -125,4 +145,5 @@ class AddAddressFragment : BaseFragment(), View.OnClickListener {
         }
         return ""
     }
+
 }

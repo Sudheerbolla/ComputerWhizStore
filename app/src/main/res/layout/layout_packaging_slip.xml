@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/seven_dp"
+            android:gravity="center"
+            android:padding="@dimen/ten_dp"
+            android:text="@string/packaging_slip"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/eighteen_sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/five_dp"
+            android:background="@color/colorBlack"
+            android:padding="@dimen/ten_dp"
+            android:text="@string/customer_details"
+            android:textColor="@color/colorWhite" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardCustomer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/five_dp"
+            android:orientation="vertical"
+            app:cardBackgroundColor="@color/colorWhite"
+            app:cardCornerRadius="@dimen/seven_dp"
+            app:cardElevation="@dimen/two_dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="@dimen/seven_dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtCustomerDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/seven_dp"
+                android:text="@string/select_customer"
+                android:textColor="@color/colorBlack" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/five_dp"
+            android:background="@color/colorBlack"
+            android:padding="@dimen/ten_dp"
+            android:text="@string/address"
+            android:textColor="@color/colorWhite" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/five_dp"
+            android:orientation="vertical"
+            app:cardBackgroundColor="@color/colorWhite"
+            app:cardCornerRadius="@dimen/seven_dp"
+            app:cardElevation="@dimen/two_dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="@dimen/seven_dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/seven_dp"
+                android:text="@string/select_address"
+                android:textColor="@color/colorBlack" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/five_dp"
+            android:background="@color/colorBlack"
+            android:padding="@dimen/ten_dp"
+            android:text="@string/order_details"
+            android:textColor="@color/colorWhite" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/seven_dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtTotalQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/three_dp"
+                android:text="@string/total_qty"
+                android:textColor="@color/colorBlack" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtTotalPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/three_dp"
+                android:text="@string/total_price"
+                android:textColor="@color/colorRed"
+                android:textSize="@dimen/eighteen_sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/five_dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtClose"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/seven_dp"
+                android:layout_marginEnd="@dimen/five_dp"
+                android:layout_weight="1"
+                android:background="@drawable/square_bg_selector"
+                android:gravity="center"
+                android:padding="@dimen/ten_dp"
+                android:text="@string/close"
+                android:textColor="@color/btn_text_color_square"
+                android:textSize="@dimen/seventeen_sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtPrint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/seven_dp"
+                android:layout_marginEnd="@dimen/five_dp"
+                android:layout_weight="1"
+                android:background="@drawable/square_bg_selector"
+                android:gravity="center"
+                android:padding="@dimen/ten_dp"
+                android:text="@string/print"
+                android:textColor="@color/btn_text_color_square"
+                android:textSize="@dimen/seventeen_sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

@@ -9,7 +9,7 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/txtCreateOrder"
+            android:layout_above="@id/linBottom"
             android:background="@color/colorWhite"
             android:fillViewport="true"
             android:fitsSystemWindows="true"
@@ -20,6 +20,79 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/five_dp"
+                    android:background="@color/colorBlack"
+                    android:padding="@dimen/ten_dp"
+                    android:text="@string/customer_details"
+                    android:textColor="@color/colorWhite" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardCustomer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/five_dp"
+                    android:orientation="vertical"
+                    app:cardBackgroundColor="@color/colorWhite"
+                    app:cardCornerRadius="@dimen/seven_dp"
+                    app:cardElevation="@dimen/two_dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:contentPadding="@dimen/seven_dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtCustomerDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/seven_dp"
+                        android:text="@string/select_customer"
+                        android:textColor="@color/colorBlack" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/five_dp"
+                    android:background="@color/colorBlack"
+                    android:padding="@dimen/ten_dp"
+                    android:text="@string/address"
+                    android:textColor="@color/colorWhite" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/five_dp"
+                    android:orientation="vertical"
+                    app:cardBackgroundColor="@color/colorWhite"
+                    app:cardCornerRadius="@dimen/seven_dp"
+                    app:cardElevation="@dimen/two_dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:contentPadding="@dimen/seven_dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/seven_dp"
+                        android:text="@string/select_address"
+                        android:textColor="@color/colorBlack" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/five_dp"
+                    android:background="@color/colorBlack"
+                    android:padding="@dimen/ten_dp"
+                    android:text="@string/product_details"
+                    android:textColor="@color/colorWhite" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewInventory"
@@ -88,90 +161,74 @@
                         android:gravity="center"
                         android:padding="@dimen/three_dp"
                         android:text="@string/total_price"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/eighteen_sp" />
 
                 </LinearLayout>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/five_dp"
-                    android:background="@color/colorBlack"
-                    android:padding="@dimen/ten_dp"
-                    android:text="@string/customer_details"
-                    android:textColor="@color/colorWhite" />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardCustomer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/five_dp"
-                    android:orientation="vertical"
-                    app:cardBackgroundColor="@color/colorWhite"
-                    app:cardCornerRadius="@dimen/seven_dp"
-                    app:cardElevation="@dimen/two_dp"
-                    app:cardPreventCornerOverlap="true"
-                    app:cardUseCompatPadding="true"
-                    app:contentPadding="@dimen/seven_dp">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txtCustomerDetails"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/seven_dp"
-                        android:text="@string/select_customer"
-                        android:textColor="@color/colorBlack" />
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/five_dp"
-                    android:background="@color/colorBlack"
-                    android:padding="@dimen/ten_dp"
-                    android:text="@string/address"
-                    android:textColor="@color/colorWhite" />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/five_dp"
-                    android:orientation="vertical"
-                    app:cardBackgroundColor="@color/colorWhite"
-                    app:cardCornerRadius="@dimen/seven_dp"
-                    app:cardElevation="@dimen/two_dp"
-                    app:cardPreventCornerOverlap="true"
-                    app:cardUseCompatPadding="true"
-                    app:contentPadding="@dimen/seven_dp">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txtAddress"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/seven_dp"
-                        android:text="@string/select_address"
-                        android:textColor="@color/colorBlack" />
-
-                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txtCreateOrder"
+        <LinearLayout
+            android:id="@+id/linBottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/square_bg_selector"
-            android:gravity="center"
-            android:padding="@dimen/ten_dp"
-            android:text="@string/create_order"
-            android:textColor="@color/btn_text_color_square"
-            android:textSize="@dimen/seventeen_sp"
-            android:textStyle="bold" />
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linButtons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/five_dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtPrintInvoice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/seven_dp"
+                    android:layout_marginEnd="@dimen/five_dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/square_bg_selector"
+                    android:gravity="center"
+                    android:padding="@dimen/ten_dp"
+                    android:text="@string/invoice"
+                    android:textColor="@color/btn_text_color_square"
+                    android:textSize="@dimen/seventeen_sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtPrintPackagingSlip"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/seven_dp"
+                    android:layout_marginEnd="@dimen/five_dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/square_bg_selector"
+                    android:gravity="center"
+                    android:padding="@dimen/ten_dp"
+                    android:text="@string/packaging_slip"
+                    android:textColor="@color/btn_text_color_square"
+                    android:textSize="@dimen/seventeen_sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtCreateOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/square_bg_selector"
+                android:gravity="center"
+                android:padding="@dimen/ten_dp"
+                android:text="@string/create_order"
+                android:textColor="@color/btn_text_color_square"
+                android:textSize="@dimen/seventeen_sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </LinearLayout>
 
     </RelativeLayout>
 

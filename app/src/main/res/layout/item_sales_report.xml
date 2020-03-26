@@ -90,6 +90,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </RelativeLayout>
+
     <!--
         </com.computerwhizstore.utils.views.swipeutils.CustomSwipeView>
     -->
