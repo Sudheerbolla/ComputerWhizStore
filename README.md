@@ -1,3 +1,3 @@
 # ComputerWhizStore
 
-This is a college project for SYstem Analysis and Design. Intended for academic purpose.
+This is a college project for System Analysis and Design. Intended for academic purpose.
