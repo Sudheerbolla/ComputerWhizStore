@@ -27,6 +27,10 @@ class DashboardFragment : BaseFragment(), View.OnClickListener {
     private fun initComponents() {
         fragmentDashboardBinding.txtPackagingSlips.visibility = View.GONE
         fragmentDashboardBinding.txtInvoices.visibility = View.GONE
+        if (MainActivity.userModel.userType == 0) {
+            fragmentDashboardBinding.txtSalesOverview.visibility = View.VISIBLE
+            fragmentDashboardBinding.txtSalesOverview.setOnClickListener(this)
+        } else fragmentDashboardBinding.txtSalesOverview.visibility = View.GONE
 
         fragmentDashboardBinding.txtCustomerReports.setOnClickListener(this)
         fragmentDashboardBinding.txtSalesReport.setOnClickListener(this)
@@ -68,6 +72,9 @@ class DashboardFragment : BaseFragment(), View.OnClickListener {
 //                    true
 //                )
 //            }
+            R.id.txtSalesOverview -> {
+                mainActivity.replaceFragment(SalesPieFragment(), true)
+            }
             R.id.txtInventory -> {
                 mainActivity.replaceFragment(
                     ListFragment.newInstance(Constants.SCREEN_INVENTORY),

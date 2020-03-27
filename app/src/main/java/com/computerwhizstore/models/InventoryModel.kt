@@ -11,7 +11,7 @@ class InventoryModel() : Parcelable {
     var selectedQuantity: Int? = 0
     var categoryId: Int? = 0
     var subCategoryId: Int? = 0
-    var inventoryId: Int? = 0
+    var inventoryId: Int? = null
     var paymentStatus: Int? = 0
     var productDescription: String? = ""
     var unitPrice: Double? = 0.0

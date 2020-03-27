@@ -49,5 +49,10 @@
     <string name="packaging_slip">Packaging Slip</string>
     <string name="close">Close</string>
     <string name="print">Print</string>
+    <string name="welcome_to_computer_whiz_store">Welcome To Computer Whiz Store</string>
+    <string name="sales_overview">Sales Overview</string>
+    <string name="shipping_address">Shipping Address</string>
+    <string name="from_address">From Address</string>
+    <string name="store_address">Computer Whiz Store\nNew WestMinster\nRoyal Avenue\nBC - V5S 7Y6, Canada.</string>
 
 </resources>
