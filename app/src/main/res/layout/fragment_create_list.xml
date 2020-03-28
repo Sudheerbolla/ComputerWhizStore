@@ -54,6 +54,7 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:background="@color/colorBlue"
                 android:overScrollMode="never"
                 android:padding="@dimen/five_dp"
                 android:scrollbars="none"

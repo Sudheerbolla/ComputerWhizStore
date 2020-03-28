@@ -10,6 +10,7 @@ import com.computerwhizstore.MainActivity
 import com.computerwhizstore.R
 import com.computerwhizstore.databinding.FragmentDashboardBinding
 import com.computerwhizstore.utils.Constants
+import com.computerwhizstore.utils.dbutils.DbHelper
 
 class DashboardFragment : BaseFragment(), View.OnClickListener {
 
@@ -31,6 +32,8 @@ class DashboardFragment : BaseFragment(), View.OnClickListener {
             fragmentDashboardBinding.txtSalesOverview.visibility = View.VISIBLE
             fragmentDashboardBinding.txtSalesOverview.setOnClickListener(this)
         } else fragmentDashboardBinding.txtSalesOverview.visibility = View.GONE
+
+        fragmentDashboardBinding.txtWelcome.text = "Welcome ${MainActivity.userModel.userName}"
 
         fragmentDashboardBinding.txtCustomerReports.setOnClickListener(this)
         fragmentDashboardBinding.txtSalesReport.setOnClickListener(this)

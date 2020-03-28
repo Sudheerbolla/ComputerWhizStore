@@ -11,7 +11,7 @@
     <color name="colorYellow">#F5A623</color>
     <color name="colorRed">#D0021B</color>
     <color name="colorBlue">#0658BC</color>
-    <color name="colorGreen">#67600F</color>
+    <color name="colorGreen">#008000</color>
 
     <color name="transparent">@android:color/transparent</color>
 

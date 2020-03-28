@@ -12,6 +12,7 @@
             android:id="@+id/relTopBar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
+            android:background="@color/colorBlue"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -31,8 +32,7 @@
                 android:layout_toStartOf="@id/txtLogout"
                 android:layout_toEndOf="@id/imgBack"
                 android:gravity="center"
-                android:text="Heading"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:textSize="@dimen/eighteen_sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -47,7 +47,7 @@
                 android:paddingTop="@dimen/eight_dp"
                 android:paddingEnd="@dimen/twelve_dp"
                 android:paddingBottom="@dimen/eight_dp"
-                android:text="Logout"
+                android:text="@string/logout"
                 android:textColor="@color/btn_text_color_red"
                 android:textSize="@dimen/fifteen_sp" />
 
@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/one_dp"
             android:layout_below="@id/relTopBar"
-            android:background="@color/color_vvvDarkGrey" />
+            android:background="@color/colorWhite" />
 
         <FrameLayout
             android:id="@+id/mainFrame"

@@ -11,7 +11,6 @@ import com.computerwhizstore.models.UserModel
 import com.computerwhizstore.utils.AppLocalStorage
 import com.computerwhizstore.utils.PopUtils
 import com.computerwhizstore.utils.StaticUtils
-import com.computerwhizstore.utils.dbutils.DbHelper
 
 class MainActivity : BaseActivity(), View.OnClickListener {
     companion object {
@@ -54,7 +53,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                     DialogInterface.OnClickListener { dialog, which ->
                         run {
                             AppLocalStorage.getInstance(this).clear()
-                            DbHelper(this).deleteAll()
+//                            DbHelper(this).deleteAll()
                             startActivity(Intent(this, SplashActivity::class.java))
                             finishAffinity()
                         }

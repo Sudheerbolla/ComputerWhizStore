@@ -1,135 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!--  <com.computerwhizstore.utils.views.swipeutils.CustomSwipeView
-          android:id="@+id/swipeLayout"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content">
-
-          <LinearLayout
-              android:layout_width="wrap_content"
-              android:layout_height="match_parent"
-              android:orientation="horizontal">
-
-              <androidx.appcompat.widget.AppCompatTextView
-                  android:id="@+id/txtDelete"
-                  android:layout_width="wrap_content"
-                  android:layout_height="match_parent"
-                  android:layout_gravity="center"
-                  android:gravity="center"
-                  android:padding="@dimen/seven_dp"
-                  android:text="Delete"
-                  android:textColor="@color/colorRed"
-                  android:textSize="@dimen/sixteen_sp" />
-
-              <androidx.appcompat.widget.AppCompatTextView
-                  android:id="@+id/txtEdit"
-                  android:layout_width="wrap_content"
-                  android:layout_height="match_parent"
-                  android:layout_gravity="center"
-                  android:gravity="center"
-                  android:padding="@dimen/seven_dp"
-                  android:text="Edit"
-                  android:textColor="@color/colorGreen"
-                  android:textSize="@dimen/sixteen_sp" />
-
-          </LinearLayout>
-  -->
-    <RelativeLayout
+    <com.computerwhizstore.utils.views.swipeutils.CustomSwipeView
+        android:id="@+id/swipeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/ten_dp"
-        tools:context=".MainActivity">
+        android:clickable="true"
+        android:focusable="true"
+        app:dragEdge="right"
+        app:swipemode="same_level">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txtProductName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:padding="@dimen/seven_dp"
-            android:textColor="@color/colorBlack"
-            android:textSize="18sp" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txtProductDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtProductName"
-            android:gravity="center_vertical"
-            android:padding="@dimen/three_dp"
-            android:textColor="@color/color_vvvDarkGrey"
-            android:textSize="15sp" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txtCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtProductDescription"
-            android:layout_alignParentStart="true"
-            android:layout_toStartOf="@id/txtSubCategory"
-            android:gravity="center_vertical"
-            android:padding="@dimen/five_dp"
-            android:textColor="@color/colorBlack"
-            android:textSize="14sp" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txtSubCategory"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtProductDescription"
-            android:layout_alignParentEnd="true"
-            android:gravity="center_vertical"
-            android:padding="@dimen/five_dp"
-            android:textColor="@color/colorBlack"
-            android:textSize="17sp" />
-        <!--
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/txtSubCategory"
-                    android:layout_toStartOf="@id/txtPrice"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/twelve_dp">
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/ten_dp">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txtMinus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="-"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/twentyfive_sp" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:drawableStart="@drawable/ic_delete"
+                android:drawablePadding="@dimen/five_dp"
+                android:gravity="center"
+                android:padding="@dimen/seven_dp"
+                android:text="@string/delete"
+                android:textColor="@color/colorRed"
+                android:textSize="@dimen/sixteen_sp" />
 
-                </LinearLayout>-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:drawableStart="@drawable/ic_edit"
+                android:drawablePadding="@dimen/five_dp"
+                android:gravity="center"
+                android:padding="@dimen/seven_dp"
+                android:text="@string/edit"
+                android:textColor="@color/colorGreen"
+                android:textSize="@dimen/sixteen_sp" />
 
+        </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txtQuanity"
+        <RelativeLayout
+            android:id="@+id/relBody"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtSubCategory"
-            android:layout_alignParentStart="true"
-            android:layout_toStartOf="@id/txtPrice"
-            android:gravity="center_vertical"
-            android:padding="@dimen/five_dp"
-            android:textColor="@color/colorBlack"
-            android:textSize="14sp" />
+            android:layout_height="match_parent"
+            android:background="@color/colorBlue"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/ten_dp"
+            tools:context=".MainActivity">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txtPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtSubCategory"
-            android:layout_alignParentEnd="true"
-            android:gravity="center_vertical"
-            android:padding="@dimen/five_dp"
-            android:textColor="@color/colorRed"
-            android:textSize="17sp" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtProductName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/seven_dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
 
-    </RelativeLayout>
-    <!--
-        </com.computerwhizstore.utils.views.swipeutils.CustomSwipeView>
-    -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtProductDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtProductName"
+                android:gravity="center_vertical"
+                android:padding="@dimen/three_dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="15sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtProductDescription"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/txtSubCategory"
+                android:gravity="center_vertical"
+                android:padding="@dimen/five_dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtSubCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtProductDescription"
+                android:layout_alignParentEnd="true"
+                android:gravity="center_vertical"
+                android:padding="@dimen/five_dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="17sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtQuanity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtSubCategory"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/txtPrice"
+                android:gravity="center_vertical"
+                android:padding="@dimen/five_dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtSubCategory"
+                android:layout_alignParentEnd="true"
+                android:gravity="center_vertical"
+                android:padding="@dimen/five_dp"
+                android:textColor="@color/colorRed"
+                android:textSize="17sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/one_dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorWhite" />
+
+        </RelativeLayout>
+
+    </com.computerwhizstore.utils.views.swipeutils.CustomSwipeView>
 
 </layout>

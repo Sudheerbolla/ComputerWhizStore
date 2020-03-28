@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/fifty_dp"
+        android:drawableTop="@mipmap/ic_launcher"
         android:gravity="center"
         android:paddingBottom="@dimen/five_dp"
         android:text="@string/welcome_to_computer_whiz_store"

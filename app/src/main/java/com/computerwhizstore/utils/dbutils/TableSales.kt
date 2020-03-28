@@ -32,12 +32,12 @@ internal object TableSales {
         timeStamp = "zTimeStamp"
         salesPersonId = "zSalesPersonId"
         customerId = "zCustomerId"
-        addressId = "zSalesPersonId"
+        addressId = "zAddressId"
         productObject = "zProductObject"
 
         CREATE_TABLE =
             "create table if not exists $TABLE_NAME ( $salesId INTEGER PRIMARY KEY NOT NULL, $name" +
-                    " TEXT, $timeStamp BLOB, $productId TEXT, $productObject TEXT, $customerId INTEGER, $addressId INTEGER, $subTotal REAL, $tax1 REAL, $totalAmount REAL, $discount REAL, $quantity INTEGER, UNIQUE ($salesId) ON CONFLICT REPLACE);"
+                    " TEXT, $timeStamp BLOB, $productId TEXT, $productObject TEXT, $salesPersonId TEXT, $customerId INTEGER, $addressId INTEGER, $subTotal REAL, $tax1 REAL, $totalAmount REAL, $discount REAL, $quantity INTEGER, UNIQUE ($salesId) ON CONFLICT REPLACE);"
 
     }
 

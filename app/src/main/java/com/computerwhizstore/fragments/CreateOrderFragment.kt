@@ -192,6 +192,7 @@ class CreateOrderFragment : BaseFragment(), View.OnClickListener {
         salesReportsModel.timeStamp = Calendar.getInstance().timeInMillis
         salesReportsModel.discount = discount
         salesReportsModel.totalAmount = finalPrice
+        salesReportsModel.salesPersonId = MainActivity.userModel.userId!!
         salesReportsModel.subTotal = totalPrice
         salesReportsModel.customerId = customerModel?.customerId
         salesReportsModel.addressId = addressesModel?.addressId

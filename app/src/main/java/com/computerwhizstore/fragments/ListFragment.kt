@@ -1,6 +1,7 @@
 package com.computerwhizstore.fragments
 
 import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -23,6 +24,7 @@ import com.computerwhizstore.models.CustomersModel
 import com.computerwhizstore.models.InventoryModel
 import com.computerwhizstore.models.SalesReportsModel
 import com.computerwhizstore.utils.Constants
+import com.computerwhizstore.utils.PopUtils
 import com.computerwhizstore.utils.StaticUtils
 import com.computerwhizstore.utils.dbutils.DbHelper
 import com.computerwhizstore.utils.views.DividerItemDecoration
@@ -236,7 +238,7 @@ class ListFragment : BaseFragment(), IClickListener, View.OnClickListener,
     private fun setUpFilter() {
         val categories = arrayOf("Ascending", "Descending", "Date")
         val dataAdapter: ArrayAdapter<String> =
-            ArrayAdapter<String>(mainActivity, android.R.layout.simple_spinner_item, categories)
+            ArrayAdapter<String>(mainActivity, R.layout.spinner_white, categories)
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerFilter.adapter = dataAdapter
         binding.spinnerFilter.onItemSelectedListener = this
@@ -335,19 +337,24 @@ class ListFragment : BaseFragment(), IClickListener, View.OnClickListener,
     }
 
     override fun onClick(view: View, position: Int) {
-//        val selectedModel = salesReportsModelListArrayList?.get(position)
-//        mainActivity.replaceFragment(QuestionsListFragment(), true)
-//        val intent = Intent(mainActivity, QuestionsActivity::class.java)
-//        intent.putExtra("categoryId", selectedModel?.id)
-//        intent.putExtra("anganwadiId", isFrom)
-//        startActivity(intent)
         mainActivity.overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left)
         when (isFrom) {
             Constants.SCREEN_INVENTORY -> {
                 val selectedModel = inventoryModelListArrayList?.get(position)
-                mainActivity.replaceFragment(
-                    AddInventoryFragment.newInstance(selectedModel!!), true
-                )
+                when (view.id) {
+                    R.id.txtDelete -> {
+                        PopUtils.deleteProductDialog(mainActivity,
+                            "Are you sure you want to delete this Product?",
+                            DialogInterface.OnClickListener { dialog, which ->
+                                DbHelper(mainActivity).deleteInventory(selectedModel?.inventoryId!!.toString())
+                            })
+                    }
+                    R.id.txtEdit -> {
+                        mainActivity.replaceFragment(
+                            AddInventoryFragment.newInstance(selectedModel!!), true
+                        )
+                    }
+                }
             }
             Constants.SCREEN_CUSTOMERS -> {
                 val selectedModel = customersModelListArrayList?.get(position)

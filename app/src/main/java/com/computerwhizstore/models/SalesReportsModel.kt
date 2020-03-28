@@ -17,7 +17,7 @@ class SalesReportsModel() : Parcelable {
     var productObject: String? = null
     var addressId: Int? = null
     var customerId: Int? = null
-    var salesPersonId: Int? = null
+    var salesPersonId: String? = null
 
     constructor(parcel: Parcel) : this() {
         salesId = parcel.readInt()
@@ -30,9 +30,9 @@ class SalesReportsModel() : Parcelable {
         quantity = parcel.readValue(Int::class.java.classLoader) as? Int
         timeStamp = parcel.readValue(Long::class.java.classLoader) as? Long
         productId = parcel.readString()
+        salesPersonId = parcel.readString()
         addressId = parcel.readValue(Int::class.java.classLoader) as? Int
         customerId = parcel.readValue(Int::class.java.classLoader) as? Int
-        salesPersonId = parcel.readValue(Int::class.java.classLoader) as? Int
     }
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
@@ -48,7 +48,7 @@ class SalesReportsModel() : Parcelable {
         dest?.writeString(productId)
         dest?.writeValue(addressId)
         dest?.writeValue(customerId)
-        dest?.writeValue(salesPersonId)
+        dest?.writeString(salesPersonId)
     }
 
     override fun describeContents(): Int {

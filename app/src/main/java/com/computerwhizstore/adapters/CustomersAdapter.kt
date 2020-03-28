@@ -41,7 +41,7 @@ class CustomersAdapter(
                 "${categoriesModel.firstName} ${categoriesModel.middleName} ${categoriesModel.lastName} "
             binding.txtEmailAddress.text = "${categoriesModel.emailAddress}"
             binding.txtPhoneNumber.text = "${categoriesModel.phoneNumber}"
-            binding.root.setOnClickListener { v ->
+            binding.relBody.setOnClickListener { v ->
                 if (iClickListener != null) iClickListener.onClick(v, adapterPosition)
             }
         }

@@ -24,7 +24,7 @@ class DbHelper(context: Context) {
         databaseHandler.getWritableDatabase()
         val values = ContentValues()
         values.put(TableSales.name, salesReportsModel.name)
-        values.put(TableSales.name, salesReportsModel.productObject)
+        values.put(TableSales.productObject, salesReportsModel.productObject)
         values.put(TableSales.subTotal, salesReportsModel.subTotal)
         values.put(TableSales.tax1, salesReportsModel.tax1)
         values.put(TableSales.totalAmount, salesReportsModel.totalAmount)
@@ -147,10 +147,9 @@ class DbHelper(context: Context) {
                 salesReportsModel.productId =
                     cursor.getString(cursor.getColumnIndex(TableSales.productId))
                 salesReportsModel.productObject =
-                    if (cursor.columnNames.contains(TableSales.productObject))
-                        cursor.getString(cursor.getColumnIndex(TableSales.productObject)) else ""
+                    cursor.getString(cursor.getColumnIndex(TableSales.productObject))
                 salesReportsModel.salesPersonId =
-                    cursor.getInt(cursor.getColumnIndex(TableSales.salesPersonId))
+                    cursor.getString(cursor.getColumnIndex(TableSales.salesPersonId))
                 salesReportsModel.name =
                     cursor.getString(cursor.getColumnIndex(TableSales.name))
                 salesReportsModel.subTotal =
@@ -295,7 +294,7 @@ class DbHelper(context: Context) {
                     salesReportsModel.productId =
                         cursor.getString(cursor.getColumnIndex(TableSales.productId))
                     salesReportsModel.salesPersonId =
-                        cursor.getInt(cursor.getColumnIndex(TableSales.salesPersonId))
+                        cursor.getString(cursor.getColumnIndex(TableSales.salesPersonId))
                     salesReportsModel.name =
                         cursor.getString(cursor.getColumnIndex(TableSales.name))
                     salesReportsModel.subTotal =

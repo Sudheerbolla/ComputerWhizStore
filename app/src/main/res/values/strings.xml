@@ -54,5 +54,12 @@
     <string name="shipping_address">Shipping Address</string>
     <string name="from_address">From Address</string>
     <string name="store_address">Computer Whiz Store\nNew WestMinster\nRoyal Avenue\nBC - V5S 7Y6, Canada.</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="packaging_nslips">Packaging\nSlips</string>
+    <string name="inventory_management">Inventory Management</string>
+    <string name="customers">Customers</string>
+    <string name="sales_reports">Sales Reports</string>
+    <string name="logout">Logout</string>
 
 </resources>

@@ -39,7 +39,7 @@ class InvoicesAdapter(
         fun bind(categoriesModel: InvoiceModel, iClickListener: IClickListener?) {
 //            binding.txtName.text =
 //                "${categoriesModel.invoiceNo}"
-            binding.root.setOnClickListener { v ->
+            binding.relBody.setOnClickListener { v ->
                 if (iClickListener != null) iClickListener.onClick(v, adapterPosition)
             }
         }

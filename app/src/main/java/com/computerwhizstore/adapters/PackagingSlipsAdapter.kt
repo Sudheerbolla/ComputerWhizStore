@@ -38,7 +38,7 @@ class PackagingSlipsAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(categoriesModel: PackagingSlipsModel, iClickListener: IClickListener?) {
             binding.txtName.text = "${categoriesModel.packaginSlipNo}"
-            binding.root.setOnClickListener { v ->
+            binding.relBody.setOnClickListener { v ->
                 if (iClickListener != null) iClickListener.onClick(v, adapterPosition)
             }
         }

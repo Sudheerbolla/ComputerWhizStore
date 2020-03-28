@@ -42,7 +42,7 @@ class InventorySelectionAdapter(
             binding.txtQuanity.text = "Available Quantity: ${categoriesModel.quantity}"
             binding.txtCategory.text = "${categoriesModel.categoryId}"
             binding.txtSubCategory.text = "${categoriesModel.subCategoryId}"
-            binding.root.setOnClickListener { v ->
+            binding.relBody.setOnClickListener { v ->
                 if (iClickListener != null) iClickListener.onClick(v, adapterPosition)
             }
             binding.txtMinus.setOnClickListener { v ->

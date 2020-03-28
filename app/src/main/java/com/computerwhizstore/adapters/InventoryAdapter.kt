@@ -14,7 +14,8 @@ class InventoryAdapter(
     itemsData: ArrayList<InventoryModel>,
     private var iClickListener: IClickListener?
 ) : RecyclerView.Adapter<InventoryAdapter.ViewHolder>() {
-    private lateinit var mItemManger: ViewBinderHelper;
+
+    private var mItemManger: ViewBinderHelper = ViewBinderHelper()
 
     private var customersArrayList: ArrayList<InventoryModel>? = itemsData
 
@@ -27,7 +28,8 @@ class InventoryAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.bind(customersArrayList!![position], iClickListener)
+        mItemManger.setOpenOnlyOne(true)
+        viewHolder.bind(customersArrayList!![position], iClickListener, mItemManger)
     }
 
     override fun getItemCount(): Int {
@@ -36,14 +38,26 @@ class InventoryAdapter(
 
     class ViewHolder(var binding: ItemInventoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(categoriesModel: InventoryModel, iClickListener: IClickListener?) {
+        fun bind(
+            categoriesModel: InventoryModel,
+            iClickListener: IClickListener?,
+            mItemManger: ViewBinderHelper
+        ) {
+            mItemManger.bind(binding.swipeLayout, adapterPosition.toString())
+            mItemManger.closeAll()
             binding.txtProductName.text = "${categoriesModel.productName}"
             binding.txtPrice.text = "$ ${categoriesModel.unitPrice}"
             binding.txtProductDescription.text = "${categoriesModel.productDescription}"
             binding.txtQuanity.text = "Available Quantity: ${categoriesModel.quantity}"
             binding.txtCategory.text = "${categoriesModel.categoryId}"
             binding.txtSubCategory.text = "${categoriesModel.subCategoryId}"
-            binding.root.setOnClickListener { v ->
+            binding.relBody.setOnClickListener { v ->
+                if (iClickListener != null) iClickListener.onClick(v, adapterPosition)
+            }
+            binding.txtDelete.setOnClickListener { v ->
+                if (iClickListener != null) iClickListener.onClick(v, adapterPosition)
+            }
+            binding.txtEdit.setOnClickListener { v ->
                 if (iClickListener != null) iClickListener.onClick(v, adapterPosition)
             }
         }

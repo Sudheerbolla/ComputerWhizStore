@@ -4,25 +4,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite"
+        android:background="@color/colorBlue"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/ten_dp">
 
         <TextView
+            android:id="@+id/txtWelcome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/thirtyfive_dp"
             android:gravity="center"
             android:padding="@dimen/ten_dp"
             android:text="Welcome User"
-            android:textColor="@color/colorOrange"
+            android:textColor="@color/colorWhite"
             android:textSize="@dimen/twenty_sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtSalesOverview"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/seven_dp"
@@ -32,7 +32,8 @@
             android:text="@string/sales_overview"
             android:textColor="@color/btn_text_color"
             android:textSize="@dimen/seventeen_sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/txtSalesReport"
@@ -42,7 +43,7 @@
             android:background="@drawable/round_bg_selector"
             android:gravity="center"
             android:padding="@dimen/ten_dp"
-            android:text="Sales Reports"
+            android:text="@string/sales_reports"
             android:textColor="@color/btn_text_color"
             android:textSize="@dimen/seventeen_sp"
             android:textStyle="bold" />
@@ -55,7 +56,7 @@
             android:background="@drawable/round_bg_selector"
             android:gravity="center"
             android:padding="@dimen/ten_dp"
-            android:text="Customers"
+            android:text="@string/customers"
             android:textColor="@color/btn_text_color"
             android:textSize="@dimen/seventeen_sp"
             android:textStyle="bold" />
@@ -68,7 +69,7 @@
             android:background="@drawable/round_bg_selector"
             android:gravity="center"
             android:padding="@dimen/ten_dp"
-            android:text="Packaging Slips"
+            android:text="@string/packaging_slip"
             android:textColor="@color/btn_text_color"
             android:textSize="@dimen/seventeen_sp"
             android:textStyle="bold" />
@@ -81,7 +82,7 @@
             android:background="@drawable/round_bg_selector"
             android:gravity="center"
             android:padding="@dimen/ten_dp"
-            android:text="Invoices"
+            android:text="@string/invoice"
             android:textColor="@color/btn_text_color"
             android:textSize="@dimen/seventeen_sp"
             android:textStyle="bold" />
@@ -94,7 +95,7 @@
             android:background="@drawable/round_bg_selector"
             android:gravity="center"
             android:padding="@dimen/ten_dp"
-            android:text="Inventory Management"
+            android:text="@string/inventory_management"
             android:textColor="@color/btn_text_color"
             android:textSize="@dimen/seventeen_sp"
             android:textStyle="bold" />
